@@ -6,13 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:21:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 14:14:31 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/06 11:19:28 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
-#include "ICharacter.hpp"
 #include "Character.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"

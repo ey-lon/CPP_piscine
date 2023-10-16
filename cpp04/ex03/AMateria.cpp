@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:22:04 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 11:54:17 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/06 09:48:14 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ AMateria &AMateria::operator=(const AMateria &src)
 {
 	if (this != &src)
 	{
-		_type = src._type;
+		;
 	}
 	return (*this);
 }

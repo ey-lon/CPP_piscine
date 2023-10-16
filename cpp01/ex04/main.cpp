@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:29:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/14 14:57:54 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:45:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,11 @@ int main(int ac, char **av)
 	//Outfile------------
 	std::string fileOutStr = fileInStr + ".replace";
 	std::ofstream fileOut(fileOutStr.c_str());
+	if (!fileOut)
+	{
+		std::cerr << "Error: Couldn't create " << fileOutStr << std::endl;
+		return (1);
+	}
 	
 	//find_and_replace---
 	std::string strToFind(av[2]);

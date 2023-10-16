@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:15 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 10:54:23 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:34:09 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # define LOW_GRADE 150
 # define HIGH_GRADE 1
+
+class AForm;
+//#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -39,8 +42,8 @@ class Bureaucrat
 			public:
 				virtual const char *what() const throw();
 		};
-		//---------------------------------------------------
 
+		//---------------------------------------------------
 		Bureaucrat(void);
 		~Bureaucrat(void);
 		Bureaucrat(const Bureaucrat &src);
@@ -53,6 +56,9 @@ class Bureaucrat
 
 		void				incrementGrade(void);
 		void				decrementGrade(void);
+
+		void				signForm(AForm &form);
+		void				executeForm(AForm const & form);
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src);

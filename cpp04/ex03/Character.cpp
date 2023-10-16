@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:47:49 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 15:45:05 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:50:47 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ Character &Character::operator=(const Character &src)
 {
 	if (this != &src)
 	{
+		bool check;
 		_name = src._name;
+		for (int i = 0; i < MAX_MATERIAS; i++)
+			delete (_materias[i]);
 		for (int i = 0; i < MAX_MATERIAS; i++)
 			_materias[i] = src._materias[i]->clone();
 	}
@@ -72,7 +75,7 @@ void Character::equip(AMateria* m)
 		i++;
 	}
 
-	//find a free slot and save it
+	//find a free slot and save the materia
 	i = 0;
 	while (i < MAX_MATERIAS && _materias[i])
 		i++;

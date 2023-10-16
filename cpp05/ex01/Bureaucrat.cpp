@@ -6,16 +6,17 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 09:33:12 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/12 09:35:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 //-------------------------------------------------------------------
 //orthodox form
 
-Bureaucrat::Bureaucrat(void) : _name("default"), _grade(LOW_GRADE)
+Bureaucrat::Bureaucrat(void) : _name("defaultBureaucrat"), _grade(LOW_GRADE)
 {
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 	return ;
@@ -115,12 +116,31 @@ void	Bureaucrat::decrementGrade(void)
 	}
 }
 
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+	}
+	catch(Form::GradeTooLowException &e)
+	{
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because their grade isn't high enough." << std::endl;
+		return;
+	}
+	catch(std::exception)
+	{
+		std::cerr << form.getName() << " is already signed." << std::endl;	
+		return ;
+	}
+	std::cout << _name << " signed " << form.getName() << "." << std::endl;
+}
+
 //===================================================================
-//operator
+//Operator
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &src)
 {
-	os << src.getName() << ", bureaucrat grade " << src.getGrade() << ".";
+	os << src.getName() << ", bureaucrat grade " << src.getGrade();
 	return (os);
 }
 

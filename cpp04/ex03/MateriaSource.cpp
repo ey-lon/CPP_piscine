@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:54:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 15:39:45 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:50:20 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 {
 	if (this != &src)
 	{
+		bool check;
+		for (int i = 0; i < MAX_MATERIAS; i++)
+				delete (_materias[i]);
 		for (int i = 0; i < MAX_MATERIAS; i++)
 			_materias[i] = src._materias[i]->clone();
 	}
@@ -58,7 +61,7 @@ void MateriaSource::learnMateria(AMateria* m)
 		i++;
 	}
 
-	//find a free slot and save it
+	//find a free slot and save the materia
 	i = 0;
 	while (i < MAX_MATERIAS && _materias[i])
 		i++;
