@@ -6,9 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:36:05 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/13 10:17:28 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:06:49 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP

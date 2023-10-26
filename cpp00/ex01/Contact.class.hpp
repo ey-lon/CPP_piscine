@@ -6,9 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:15:04 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/13 10:27:34 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:06:57 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef CONTACT_CLASS_HPP
 # define CONTACT_CLASS_HPP

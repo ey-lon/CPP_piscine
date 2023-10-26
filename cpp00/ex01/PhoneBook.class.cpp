@@ -6,11 +6,13 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:21:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/18 09:35:00 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:40:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
+#define MAX_CONTACTS 8
+
 
 PhoneBook::PhoneBook(void)
 {
@@ -26,7 +28,7 @@ PhoneBook::~PhoneBook(void)
 
 //------------------------------------------------------------------------------
 
-int	ft_check_str(std::string str, int (*f)(int))
+static int	ft_check_str(std::string str, int (*f)(int))
 {
 	int	check;
 	int	i;
@@ -48,16 +50,16 @@ int	ft_check_str(std::string str, int (*f)(int))
 	return (check);
 }
 
-std::string	ft_prompt(std::string msg, int (*f)(int))
+static std::string	ft_prompt(std::string msg, int (*f)(int))
 {
 	int			check;
 	std::string	input;
 
+	if (std::cin.eof())
+		return ("");
 	check = 1;
 	while (check)
 	{
-		if (std::cin.eof())
-			break ;
 		std::cout << msg << std::endl;
 		std::getline(std::cin, input);
 		if (std::cin.eof())
@@ -75,13 +77,11 @@ std::string	ft_prompt(std::string msg, int (*f)(int))
 void	PhoneBook::rotate_contacts(void)
 {
 	Contact temp;
-	int	max_cont;
 	int i;
 
-	max_cont = 8;
 	i = 0;
 	temp = this->contacts[0];
-	while ((i + 1) < max_cont)
+	while ((i + 1) < MAX_CONTACTS)
 	{
 		this->contacts[i] = this->contacts[(i + 1)];
 		i++;
@@ -95,18 +95,16 @@ void	PhoneBook::rotate_contacts(void)
 void	PhoneBook::add(void)
 {
 	int	i;
-	int	max_cont;
 
-	max_cont = 8;
-	if (this->contacts[max_cont - 1].get_first_name() != "")
+	if (this->contacts[MAX_CONTACTS - 1].get_first_name() != "")
 	{
 		this->rotate_contacts();
-		i = max_cont - 1;
+		i = MAX_CONTACTS - 1;
 	}
 	else
 	{
 		i = 0;
-		while (this->contacts[i].get_first_name() != "" && i < (max_cont - 1))
+		while (this->contacts[i].get_first_name() != "" && i < (MAX_CONTACTS - 1))
 			i++;
 	}
 	this->contacts[i].set_first_name(ft_prompt("Insert first name", std::isalpha));
@@ -133,12 +131,10 @@ void	PhoneBook::print_contacts(void)
 {
 	int	i;
 	int max;
-	int max_cont;
 
 	max = 10;
-	max_cont = 8;
 	i = 0;
-	while (i < max_cont && this->contacts[i].get_first_name() != "")
+	while (i < MAX_CONTACTS && this->contacts[i].get_first_name() != "")
 	{
 		std::cout << "|";
 		std::cout << std::setw(max) << (i + 1);
@@ -159,17 +155,15 @@ void	PhoneBook::print_contacts(void)
 
 static int		ft_get_index(Contact *contacts)
 {
-	int	max_cont;
 	int index;
 
-	max_cont = 8;
 	index = -1;
 	while (index == -1)
 	{
 		index = std::atoi(ft_prompt("Insert index", std::isdigit).c_str()) - 1;
 		if (std::cin.eof())
 			break ;
-		if (index < 0 || index >= max_cont || contacts[index].get_first_name() == "")
+		if (index < 0 || index >= MAX_CONTACTS || contacts[index].get_first_name() == "")
 		{
 			index = -1;
 			std::cerr << "Error" << std::endl;

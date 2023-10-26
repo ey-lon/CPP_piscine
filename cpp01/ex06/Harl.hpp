@@ -6,9 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:09:12 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/14 14:29:52 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:10:14 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef HARL_HPP
 # define HARL_HPP

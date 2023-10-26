@@ -6,9 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:44:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/13 14:22:35 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:07:41 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef HUMANA_HPP
 # define HUMANA_HPP

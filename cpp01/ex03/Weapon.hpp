@@ -6,9 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:39:27 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/18 15:00:18 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:07:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef WEAPON_HPP
 # define WEAPON_HPP

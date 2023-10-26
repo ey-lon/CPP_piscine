@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:37:48 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/13 11:17:03 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/26 15:34:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ Zombie::Zombie(void)
 	return ;
 }
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie(std::string name) : _name(name)
 {
-	_name = name;
 	return ;
 }
 
@@ -34,7 +33,7 @@ void	Zombie::announce(void)
 	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void	Zombie::set_name(std::string name)
+void	Zombie::setName(std::string name)
 {
 	_name = name;
 }
