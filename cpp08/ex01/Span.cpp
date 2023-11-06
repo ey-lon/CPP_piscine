@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/01 18:02:24 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:44:22 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	Span::addRandNumber(int n, int max)
 	int nbr;
 	for (int i = 0; i < n; i++)
 	{
-		nbr = rand() % (max + 1);
+		nbr = rand() % max;
 		addNumber(nbr);
 	}
 }
