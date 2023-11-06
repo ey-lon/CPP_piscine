@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:29:28 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/11 09:45:42 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:29:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int main(int ac, char **av)
 	if (!fileOut)
 	{
 		std::cerr << "Error: Couldn't create " << fileOutStr << std::endl;
+		fileIn.close();
 		return (1);
 	}
 	

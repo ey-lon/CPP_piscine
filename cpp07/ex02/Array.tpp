@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 11:43:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/26 15:36:11 by abettini         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:10:39 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,8 @@ template <typename T>
 Array<T>::Array(const Array<T> &src)
 {
 	//std::cout << "Array copy constructor called" << std::endl;
-	_size = 0;
-	_array = new T[src._size];
-	if (!_array)
-		return  ;
-	_size = src._size;
-	for (unsigned int i = 0; i < src._size; i++)
-		_array[i] = src._array[i];
+	_array = NULL;
+	*this = src;
 	return ;
 }
 
@@ -47,7 +42,8 @@ Array<T> &Array<T>::operator=(const Array<T> &src)
 	//std::cout << "Array assignment operator called" << std::endl;
 	if (this == &src)
 		return (*this);
-	delete [] (_array);
+	if (_array)
+		delete [] (_array);
 	_size = 0;
 	_array = new T[src._size];
 	if (!_array)
