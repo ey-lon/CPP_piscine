@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:59:08 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/06 12:02:59 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:07:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //orthodox form
 
 template <typename T>
-MutantStack<T>::MutantStack(void)
+MutantStack<T>::MutantStack(void) : std::stack<T>()
 {
 	//std::cout << "MutantStack default constructor called" << std::endl;
 	return ;
@@ -28,10 +28,9 @@ MutantStack<T>::~MutantStack(void)
 	return ;
 }
 template <typename T>
-MutantStack<T>::MutantStack(const MutantStack<T> &src)
+MutantStack<T>::MutantStack(const MutantStack<T> &src) : std::stack<T>(src)
 {
 	//std::cout << "MutantStack copy constructor called" << std::endl;
-	*this = src;
 	return ;
 }
 template <typename T>
