@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:07:21 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/30 12:15:23 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:42:27 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define EASYFIND_HPP
 
 template <typename T>
-int	easyfind(T container, int intToFind);
+int	easyfind(const T &container, int intToFind);
 
 #include "easyfind.tpp"
 

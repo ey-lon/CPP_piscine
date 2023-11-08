@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:12:16 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/01 17:35:04 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/06 14:17:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,7 @@ class Span
 		unsigned int		shortestSpan(void) const;
 		unsigned int		longestSpan(void) const;
 		
-		unsigned int			size(void) const;
-		//const unsigned int	&maxSize(void) const;
-		
-		//int					min(void) const;
-		//int					max(void) const;
-
-		//std::vector<int>::iterator begin(void);
-		//std::vector<int>::iterator end(void);
+		unsigned int		size(void) const;
 };
 
 std::ostream &operator<<(std::ostream &os, Span &src); 
