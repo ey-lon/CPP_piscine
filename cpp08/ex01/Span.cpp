@@ -6,14 +6,14 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/07 11:01:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/08 11:04:57 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 #include <stdexcept>
 #include <algorithm>
-#include <numeric>
+//#include <numeric>
 
 //------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ void	Span::addRandNumber(int n)
 {
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < n; i++)
-		addNumber( rand());
+		addNumber(rand());
 }
 
 void	Span::addRandNumber(int n, int max)
@@ -100,7 +100,6 @@ unsigned int	Span::shortestSpan(void) const
 	for (unsigned int i = 0; i < diffVec.size(); i++)
 		diffVec[i] = tmpVec[i + 1] - tmpVec[i];
 
-
 	//return the smallest difference
 	return (*std::min_element(diffVec.begin(), diffVec.end()));
 }
@@ -119,6 +118,11 @@ unsigned int	Span::longestSpan(void) const
 unsigned int	Span::size(void) const
 {
 	return (_vector.size());
+}
+
+unsigned int	Span::maxSize(void) const
+{
+	return (_maxSize);
 }
 
 //------------------------------------------------------------------

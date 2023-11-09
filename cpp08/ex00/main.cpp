@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 11:06:53 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/31 10:08:15 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:37:46 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int main(void)
 	for (unsigned long i = 0; i < v.size(); i++) //print vector
 		std::cout << v[i] << " ";
 	std::cout << std::endl;
-	std::cout << easyfind(v, n) << std::endl; //print find
+	std::cout << "easyfind: " << easyfind(v, n) << std::endl; //print find
 	std::cout << std::endl;
 
-	int j = 3;
-	v[j] = n; //add n_to_find to vector
+	v[3] = n; //add n_to_find to vector
 
 	for (unsigned long i = 0; i < v.size(); i++) //print vector
 		std::cout << v[i] << " ";
 	std::cout << std::endl;
-	std::cout << easyfind(v, 12) << std::endl; //print find
+	
+	std::cout << "easyfind: " << easyfind(v, 12) << std::endl; //print find
 	std::cout << std::endl;
 
 	//list -------------------------------------------------------------------
@@ -53,7 +53,7 @@ int main(void)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 
-	std::cout << easyfind(l, n) << std::endl; //print find
+	std::cout << "easyfind: " << easyfind(l, n) << std::endl; //print find
 	std::cout << std::endl;
 
 	l.push_back(n); //add n_to_find to list
@@ -62,7 +62,7 @@ int main(void)
 		std::cout << *it << " ";
 	std::cout << std::endl;
 
-	std::cout << easyfind(l, n) << std::endl; //print find
+	std::cout << "easyfind: " << easyfind(l, n) << std::endl; //print find
 
 	return (0);
 }
