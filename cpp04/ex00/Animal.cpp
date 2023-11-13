@@ -6,13 +6,13 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:39:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 14:39:50 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:26:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal(void)
+Animal::Animal(void) : _type("default")
 {
 	std::cout << "Animal default constructor called" << std::endl;
 	return ;
@@ -24,7 +24,7 @@ Animal::~Animal(void)
 	return ;
 }
 
-Animal::Animal(const Animal &src)
+Animal::Animal(const Animal &src) : _type("default")
 {
 	std::cout << "Animal copy constructor called" << std::endl;
 	*this = src;
@@ -34,9 +34,7 @@ Animal::Animal(const Animal &src)
 Animal &Animal::operator=(const Animal &src)
 {
 	if (this != &src)
-	{
-		this->_type = src._type;
-	}
+		;
 	return (*this);
 }
 

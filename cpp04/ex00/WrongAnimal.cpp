@@ -6,13 +6,13 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:39:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/04 14:41:07 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/10 12:31:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void)
+WrongAnimal::WrongAnimal(void) : _type("defaultWrong")
 {
 	std::cout << "WrongAnimal default constructor called" << std::endl;
 	return ;
@@ -24,7 +24,7 @@ WrongAnimal::~WrongAnimal(void)
 	return ;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &src)
+WrongAnimal::WrongAnimal(const WrongAnimal &src) : _type("defaultWrong")
 {
 	std::cout << "WrongAnimal copy constructor called" << std::endl;
 	*this = src;
@@ -34,9 +34,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &src)
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &src)
 {
 	if (this != &src)
-	{
-		this->_type = src._type;
-	}
+		;
 	return (*this);
 }
 
