@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:24 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/10 16:02:30 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/16 09:49:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class BitcoinExchange
 	private:
 		BitcoinExchange(void);
 		//_container with csv data;
-		std::map<std::string, double> _amp;
+		std::map<std::string, double> _map;
 
 	public:
 		BitcoinExchange(const std::string &database);
