@@ -8,7 +8,8 @@ NAME = RPN
 
 #-----------------------
 
-SRC =	main.cpp
+SRC =	main.cpp \
+		RPN.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

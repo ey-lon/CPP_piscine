@@ -6,13 +6,12 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:21:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/16 15:40:02 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/17 15:03:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.class.hpp"
 #define MAX_CONTACTS 8
-
 
 PhoneBook::PhoneBook(void)
 {
@@ -50,7 +49,7 @@ static int	ft_check_str(std::string str, int (*f)(int))
 	return (check);
 }
 
-static std::string	ft_prompt(std::string msg, int (*f)(int))
+static std::string	ft_prompt(const std::string &msg, int (*f)(int))
 {
 	int			check;
 	std::string	input;
@@ -119,7 +118,7 @@ void	PhoneBook::add(void)
 //------------------------------------------------------------------------------
 //print_contacts
 
-static void	ft_print_trunc(std::string str, int max)
+static void	ft_print_trunc(const std::string &str, int max)
 {
 	if (str.length() > (size_t)max)
 		std::cout << str.substr(0, max - 1) << ".";

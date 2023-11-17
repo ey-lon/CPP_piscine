@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/16 15:37:37 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:18:33 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 #include <cstdlib>
 #include <climits>
 #include <cmath>
-
-#define SPACES " \t\n\v\f\r"
 
 //====================================================
 //utils
@@ -32,24 +30,6 @@ static unsigned int	countStrChars(const std::string &str, const std::string &cha
 	return (count);
 }
 
-static unsigned int maxConsecutiveChars(const std::string &str, const std::string &chars)
-{
-	unsigned int count = 0;
-	unsigned int max = 0;
-	for (unsigned int i = 0; i < str.size(); i++)
-	{
-		if (chars.find(str[i]) != std::string::npos)
-			count++;
-		else
-		{
-			max = count > max ? count : max;
-			count = 0;
-		}
-	}
-	max = count > max ? count : max;
-	return (max);
-}
-
 static char	charAfter(const std::string &s, char c)
 {
 	size_t i = 0;
@@ -59,8 +39,9 @@ static char	charAfter(const std::string &s, char c)
 	
 }
 
+
 //=====================================================
-//int	//2147483647
+//int
 
 static bool	isInt(const std::string &s)
 {
@@ -104,31 +85,6 @@ static bool	isDouble(const std::string &s)
 }
 
 //-----------------------------------------------------
-//value
-
-static bool isValidValueFormat(const std::string& value, int limit)
-{
-	if (!isInt(value) && !isDouble(value))
-	{
-		std::cerr << "Error: not a valid number." << std::endl;
-		return (false);
-	}
-	double valueDouble;
-	valueDouble = std::strtod(value.c_str(), NULL);
-	if (valueDouble < 0)
-	{
-		std::cerr << "Error: not a positive number." << std::endl;
-		return (false);
-	}
-	if (limit > 0 && valueDouble > limit)
-	{
-		std::cerr << "Error: too large number." << std::endl;
-		return (false);
-	}
-	return (true);
-}
-
-//-----------------------------------------------------
 //date
 
 static bool isLeapYear(int year)
@@ -146,12 +102,24 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 {
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
 		return (false);
-	//if (countStrChars(date, "-") != 2)
-	//	return (false);
 
-	int year, month, day;
-	if (sscanf(date.c_str(), "%d-%d-%d", &year, &month, &day) != 3)
-		return (false);
+	std::string yearStr = date.substr(0, 4);
+	std::string monthStr = date.substr(5, 2);
+	std::string dayStr = date.substr(8);
+
+	for (size_t i = 0; i < yearStr.size(); i++)
+		if (!std::isdigit(yearStr[i]))
+			return (false);
+	for (size_t i = 0; i < monthStr.size(); i++)
+		if (!std::isdigit(monthStr[i]))
+			return (false);
+	for (size_t i = 0; i < dayStr.size(); i++)
+		if (!std::isdigit(dayStr[i]))
+			return (false);
+
+	int year = std::atoi(yearStr.c_str());
+	int month = std::atoi(monthStr.c_str());
+	int day = std::atoi(dayStr.c_str());
 
 	//--- year --------------------------
 	if (year < 0 || year > 9999)
@@ -186,6 +154,9 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 	if (!map.size())
 		return (0);
 
+	if (date > (--map.end())->first)
+		return (value * (--map.end())->second);
+
 	for(std::map<std::string, double>::const_iterator it = map.begin(); it != map.end(); it++)
 	{
 		if (date == it->first)
@@ -208,30 +179,37 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 
 static bool handleInputLine(const std::string& line, const std::map<std::string, double> &map)
 {
-	if (countStrChars(line, SPACES) != 2 || maxConsecutiveChars(line, SPACES) > 1)
-	{
+	if (line.size() < 14 || !std::isspace(line[10]) || !std::isspace(line[12]) || line[11] != '|') {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
 
-	std::istringstream lineStream(line);
-	std::string date, separator, value;
-	lineStream >> date >> separator >> value;
-
-	if (separator != "|" || !isValidDateFormat(date))
-	{
+	//--- date -----
+	std::string date = line.substr(0, 10);
+	if (!isValidDateFormat(date)) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
-	if (!isValidValueFormat(value, 1000))
-	{
+	
+	//--- value ----
+	std::string value = line.substr(13);
+	if (!isInt(value) && !isDouble(value)) {
+		std::cerr << "Error: not a valid number." << std::endl;
+		return (false);
+	}
+	
+	double valueDouble = std::strtod(value.c_str(), NULL);
+	if (valueDouble < 0) {
+		std::cerr << "Error: not a positive number." << std::endl;
+		return (false);
+	}
+	if (valueDouble > 1000) {
+		std::cerr << "Error: too large number." << std::endl;
 		return (false);
 	}
 
 	//use the map to calculate the result
-	double valueDouble = std::strtod(value.c_str(), NULL);
 	double result = getResult(map, date, valueDouble);
-
 	std::cout << date << " => " << value << " => " << result << std::endl;
 	return (true);
 }
@@ -239,9 +217,17 @@ static bool handleInputLine(const std::string& line, const std::map<std::string,
 static bool handleInputFile(std::ifstream &inputFile, const std::map<std::string, double> &map)
 {
 	std::string line;
-	std::getline(inputFile, line);
-	if (line != "date | value")
-		return (false);
+
+	while (!inputFile.eof())
+	{
+		std::getline(inputFile, line);
+		if (line == "")
+			;
+		else if (line != "date | value")
+			return (false);
+		else
+			break ;
+	}
 
 	while (!inputFile.eof())
 	{
@@ -263,19 +249,27 @@ static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> 
 		return (false);
 	}
 
+	//--- date -----
 	std::string date = line.substr(0, i);
-	std::string value = line.substr(i + 1);
-	if (!isValidDateFormat(date))
-	{	
+	if (!isValidDateFormat(date)) {	
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);	
 	}
-	if (!isValidValueFormat(value, -1))
-	{
+	
+	//--- value ----
+	std::string value = line.substr(i + 1);
+	if (!isInt(value) && !isDouble(value)) {
+		std::cerr << "Error: not a valid number." << std::endl;
+		return (false);
+	}
+	
+	double valueDouble = std::strtod(value.c_str(), NULL);
+	if (valueDouble < 0) {
+		std::cerr << "Error: not a positive number." << std::endl;
 		return (false);
 	}
 
-	double valueDouble = std::strtod(value.c_str(), NULL);
+	//add date and value to the map
 	map.insert(std::make_pair(date, valueDouble));
 	return (true);	
 }
@@ -283,9 +277,17 @@ static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> 
 static bool handleDataBaseFile(std::ifstream &dataBase, std::map<std::string, double> &map)
 {
 	std::string line;
-	std::getline(dataBase, line);
-	if (line != "date,exchange_rate")
-		return (false);
+
+	while (!dataBase.eof())
+	{
+		std::getline(dataBase, line);
+		if (line == "")
+			;
+		else if (line != "date,exchange_rate")
+			return (false);
+		else
+			break ;
+	}
 
 	while (!dataBase.eof())
 	{

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:15:04 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/16 16:06:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/17 14:57:32 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,17 @@ class Contact
 		
 		void		print_contact(void);
 
-		void		set_first_name(std::string str);
-		void		set_last_name(std::string str);
-		void		set_nickname(std::string str);
-		void		set_phone_number(std::string str);
-		void		set_darkest_secret(std::string str);
+		void		set_first_name(const std::string &str);
+		void		set_last_name(const std::string &str);
+		void		set_nickname(const std::string &str);
+		void		set_phone_number(const std::string &str);
+		void		set_darkest_secret(const std::string &str);
 
-		std::string		get_first_name(void);
-		std::string		get_last_name(void);
-		std::string		get_nickname(void);
-		std::string		get_phone_number(void);
-		std::string		get_darkest_secret(void);
+		const std::string	&get_first_name(void) const;
+		const std::string	&get_last_name(void) const;
+		const std::string	&get_nickname(void) const;
+		const std::string	&get_phone_number(void) const;
+		const std::string	&get_darkest_secret(void) const;
 };
 
 #endif
