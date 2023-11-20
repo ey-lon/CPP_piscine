@@ -6,58 +6,21 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:33:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 18:00:19 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:00:41 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 #include <climits>
 #include <cstdlib>
-#include <stdexcept>
-
-RPN::RPN(void)
-{
-	return;
-}
-
-RPN::~RPN(void)
-{
-	return;
-}
-
-RPN::RPN(const RPN &src)
-{
-	*this = src;
-	return;
-}
-
-RPN &RPN::operator=(const RPN &src)
-{
-	if (this == &src)
-		;
-
-	return (*this);
-}
+#include <vector>
 
 //=====================================================
 //utils
 
-static bool	isInt(const std::string &s)
+static bool	isDigit(const std::string &s)
 {
-	size_t i = 0;
-/* 	if (s[i] == '+' || s[i] == '-')
-		i++;
-	if (!s[i])
-		return (false); */
-	if (s.length() - i > 10)
-		return (false);
-	for (; s[i]; i++)
-		if (!std::isdigit(s[i]))
-			return (false);
-	long int tmp = std::strtol(s.c_str(), NULL, 10);
-	if (tmp < INT_MIN || tmp > INT_MAX)
-		return (false);
-	return (true);
+	return (s.length() == 1 && std::isdigit(s[0]));
 }
 
 static int	strLenMod(const char *s, const std::string &del)
@@ -70,15 +33,15 @@ static int	strLenMod(const char *s, const std::string &del)
 
 //---------------------------------------------------------
 
-static void printList(const std::list<int> &list)
+static void printVector(const std::vector<int> &vector)
 {
-	if (!list.size())
+	if (!vector.size())
 		return;
 
-	for (std::list<int>::const_iterator it = list.begin(); it != list.end(); ++it)
+	for (std::vector<int>::const_iterator it = vector.begin(); it != vector.end(); ++it)
 	{
 		std::cout << *it;
-		if (it != --(list.end()))
+		if (it != --(vector.end()))
 			std::cout << " ";
 	}
 	std::cout << std::endl;
@@ -86,32 +49,40 @@ static void printList(const std::list<int> &list)
 
 //---------------------------------------------------------
 
-static void	operation(std::list<int> &list, char op)
+static void	operation(std::vector<int> &vector, char op)
 {
-	if (list.size() < 2) {
-		throw (std::exception());
+	if (vector.size() < 2) {
+		throw (ImpossibleComputationException());
 	}
 
-	int b = list.back();
-	list.pop_back();
-	int a = list.back();
-	list.pop_back();
-	int res;
-	if (op == '+')
-		res = a + b;
-	if (op == '-')
-		res = a - b;
-	if (op == '/')
-		res = a / b;
-	if (op == '*')
-		res = a * b;
-	list.push_back(res);
+	int b = vector.back();
+	vector.pop_back();
+	int a = vector.back();
+	vector.pop_back();
+	switch (op)
+	{
+		case '+':
+			vector.push_back(a + b);
+			break ;
+		case '-':
+			vector.push_back(a - b);
+			break ;
+		case '*':
+			vector.push_back(a * b);
+			break ;
+		case '/':
+			if (!b) {
+				throw (ImpossibleDivisionException());
+			}
+			vector.push_back(a / b);
+			break ;
+	}
 }
 
-void RPN::execute(const std::string &str) const
+void reversePolishNotation(const std::string &str)
 {
-	std::string token;
-	std::list<int>	list;
+	std::string			token;
+	std::vector<int>	vector;
 	
 	int i = 0;
 	int x = 0;
@@ -124,23 +95,23 @@ void RPN::execute(const std::string &str) const
 			break;
 
 		//length
-		x = strLenMod(&(str.c_str()[i]), " +-/*");
+		x = strLenMod(&str[i], " +-/*");
 		if (!x)
 			x++;
-
+			
 		//token
 		token = str.substr(i, x);
 		if (token == "+" || token == "-" || token == "/" || token == "*") {
-			operation(list, token[0]);
+			operation(vector, token[0]);
 		}
-		else if(isInt(token)) {
-			list.push_back(std::atoi(token.c_str()));
+		else if(isDigit(token)) {
+			vector.push_back(std::atoi(token.c_str()));
 		}
 		else {
-			throw (std::exception());
+			throw (InvalidInputException());
 		}
 		
 		i += x;
 	}
-	printList(list);
+	printVector(vector);
 }

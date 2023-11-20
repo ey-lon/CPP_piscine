@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:33:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 17:29:37 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:15:18 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,27 @@
 #ifndef RPN_HPP
 # define RPN_HPP
 
-#include <list>
+#include <stdexcept>
 #include <iostream>
 
-class RPN
+void reversePolishNotation(const std::string &str);
+
+class ImpossibleDivisionException : public std::exception
 {
 	public:
-		RPN(void);
-		~RPN(void);
-		RPN(const RPN &src);
-		RPN &operator=(const RPN &src);
+		virtual const char *what() const throw() { return ("cannot divide by 0."); }
+};
 
-		void execute(const std::string &str) const;
+class ImpossibleComputationException : public std::exception
+{
+	public:
+		virtual const char *what() const throw() { return ("cannot compute."); }
+};
+
+class InvalidInputException : public std::exception
+{
+	public:
+		virtual const char *what() const throw() { return ("invalid input."); }
 };
 
 #endif
