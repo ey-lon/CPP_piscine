@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:45:37 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/21 15:11:43 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:57:00 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,6 @@ void printContainer(const T &container)
 	}
 }
 
-template <typename T>
-void	printArray(const T &array, size_t size)
-{
-	for(size_t i = 0; i < size; i++) {
-		std::cout << array[i];
-		if (i + 1 < size) {
-			std::cout << " ";
-		}
-	}
-}
-
-void	PmergeMe(int ac, char **av);
+void	PmergeMe(char **av);
 
 #endif

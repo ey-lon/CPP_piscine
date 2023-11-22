@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:45:23 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/21 14:50:22 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:56:24 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <deque>
 #include <ctime>
 
-void	PmergeMe(int ac, char **av)
+void	PmergeMe(char **av)
 {
 	std::list<int>		list;
 	std::deque<int>		deque;
@@ -24,6 +24,10 @@ void	PmergeMe(int ac, char **av)
 
 	clock_t start;
 	clock_t end;
+
+	std::cout << "Before:  ";
+	printContainer(list);
+	std::cout << std::endl;
 
 	start = clock();
 	list = mergeSort(list);
@@ -34,10 +38,6 @@ void	PmergeMe(int ac, char **av)
 	deque = mergeSort(deque);
 	end = clock();
 	double time2 = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
-	
-	std::cout << "Before:  ";
-	printArray(av, ac);
-	std::cout << std::endl;
 
 	std::cout << "After:   ";
 	printContainer(list);

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:03 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/21 15:59:17 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:53:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int main(int ac, char **av)
 	}
 	ac--;
 	
-	PmergeMe(ac, av);
+	PmergeMe(av);
 
 	return (0);
 }
