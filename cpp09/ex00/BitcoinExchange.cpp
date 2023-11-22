@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 14:18:33 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 10:37:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ static bool	isInt(const std::string &s)
 		if (!std::isdigit(s[i]))
 			return (false);
 	long int tmp = std::strtol(s.c_str(), NULL, 10);
-	if (tmp < INT_MIN || tmp > INT_MAX)
-		return (false);
-	return (true);
+	return (tmp >= INT_MIN && tmp <= INT_MAX);
 }
 
 //=====================================================
@@ -87,6 +85,16 @@ static bool	isDouble(const std::string &s)
 //-----------------------------------------------------
 //date
 
+static bool isOnlyDigit(const std::string &s)
+{
+	for (size_t i = 0; s[i]; i++) {
+		if (!std::isdigit(s[i])) {
+			return (false);
+		}
+	}
+	return (true);
+}
+
 static bool isLeapYear(int year)
 {
 	if (year % 400 == 0)
@@ -107,15 +115,8 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 	std::string monthStr = date.substr(5, 2);
 	std::string dayStr = date.substr(8);
 
-	for (size_t i = 0; i < yearStr.size(); i++)
-		if (!std::isdigit(yearStr[i]))
-			return (false);
-	for (size_t i = 0; i < monthStr.size(); i++)
-		if (!std::isdigit(monthStr[i]))
-			return (false);
-	for (size_t i = 0; i < dayStr.size(); i++)
-		if (!std::isdigit(dayStr[i]))
-			return (false);
+	if (!isOnlyDigit(yearStr) || !isOnlyDigit(monthStr) || !isOnlyDigit(dayStr))
+		return (false);
 
 	int year = std::atoi(yearStr.c_str());
 	int month = std::atoi(monthStr.c_str());
@@ -151,20 +152,18 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 
 static double getResult(const std::map<std::string, double> &map, const std::string &date, const double &value)
 {
-	if (!map.size())
+	if (!map.size()) {
 		return (0);
-
-	if (date > (--map.end())->first)
+	}
+	if (date > (--map.end())->first) {
 		return (value * (--map.end())->second);
-
+	}
 	for(std::map<std::string, double>::const_iterator it = map.begin(); it != map.end(); it++)
 	{
-		if (date == it->first)
-		{
+		if (date == it->first) {
 			return (value * it->second);
 		}
-		if (date < it->first)
-		{
+		if (date < it->first) {
 			if (it != map.begin())
 			{
 				it--;
@@ -204,7 +203,7 @@ static bool handleInputLine(const std::string& line, const std::map<std::string,
 		return (false);
 	}
 	if (valueDouble > 1000) {
-		std::cerr << "Error: too large number." << std::endl;
+		std::cerr << "Error: too large a number." << std::endl;
 		return (false);
 	}
 
@@ -217,23 +216,23 @@ static bool handleInputLine(const std::string& line, const std::map<std::string,
 static bool handleInputFile(std::ifstream &inputFile, const std::map<std::string, double> &map)
 {
 	std::string line;
+	bool		name_field = false;
 
 	while (!inputFile.eof())
 	{
 		std::getline(inputFile, line);
-		if (line == "")
+		if (line == "") {
 			;
-		else if (line != "date | value")
-			return (false);
-		else
-			break ;
-	}
-
-	while (!inputFile.eof())
-	{
-		std::getline(inputFile, line);
-		if (line != "")
+		}
+		else if (!name_field) {
+			name_field = true;
+			if (line != "date | value") {
+				handleInputLine(line, map);
+			}
+		}
+		else {
 			handleInputLine(line, map);
+		}
 	}
 	return (true);
 }
@@ -277,23 +276,23 @@ static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> 
 static bool handleDataBaseFile(std::ifstream &dataBase, std::map<std::string, double> &map)
 {
 	std::string line;
+	bool		name_field = false;
 
 	while (!dataBase.eof())
 	{
 		std::getline(dataBase, line);
-		if (line == "")
+		if (line == "") {
 			;
-		else if (line != "date,exchange_rate")
-			return (false);
-		else
-			break ;
-	}
-
-	while (!dataBase.eof())
-	{
-		std::getline(dataBase, line);
-		if (line != "")
+		}
+		else if (!name_field) {
+			name_field = true;
+			if (line != "date,exchange_rate") {
+				handleDataBaseLine(line, map);
+			}
+		}
+		else {
 			handleDataBaseLine(line, map);
+		}
 	}
 	return (true);
 }

@@ -6,15 +6,16 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:03 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/21 15:49:43 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/21 15:59:17 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 #include <climits>
+#include <cstring>
 
-static bool	isPositiveInt(const std::string &s)
+static bool	isPositiveInt(char *s)
 {
 	size_t i = 0;
  	if (s[i] == '+') {
@@ -23,7 +24,7 @@ static bool	isPositiveInt(const std::string &s)
 	if (!s[i]) {
 		return (false);
 	}
-	if (s.length() - i > 10) {
+	if (strlen(s) - i > 10) {
 		return (false);
 	}
 	for (; s[i]; i++) {
@@ -31,7 +32,8 @@ static bool	isPositiveInt(const std::string &s)
 			return (false);
 		}
 	}
-	long int tmp = std::strtol(s.c_str(), NULL, 10);
+	
+	long int tmp = std::strtol(s, NULL, 10);
 	return (tmp >= 0 && tmp <= INT_MAX);
 }
 
