@@ -1,3 +1,3 @@
 # CPP_piscine
 
-A project to learn about c++.
+Some exercises to learn c++.
