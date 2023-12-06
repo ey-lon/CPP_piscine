@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:03 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/22 10:53:37 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:47:06 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int main(int ac, char **av)
 		std::cout << "Error: invalid input." << std::endl;
 		return (1);
 	}
-	ac--;
 	
 	PmergeMe(av);
 

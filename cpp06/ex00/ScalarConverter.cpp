@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 10:59:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/25 10:26:26 by abettini         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:36:08 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter &src)
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src)
 {
 	if (this != &src)
-		;
+		return (*this);
 	return (*this);
 }
 
