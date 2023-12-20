@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:49:57 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:21:27 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:41:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,31 @@ Intern &Intern::operator=(const Intern &src)
 AForm *Intern::makeForm(const std::string &name, const std::string &target)
 {
 	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
-	
+	AForm		*form;
+
 	int j = -1;
 	for (int i = 0; i < 3 && j == -1; i++) {
 		j = name == names[i] ? i : j;
 	}
 	switch (j)
 	{
-	case 0:
-		return (new ShrubberyCreationForm(target));
-		break;
+		case 0:
+			form = new ShrubberyCreationForm(target);
+			break;
 
-	case 1:
-		return (new RobotomyRequestForm(target));
-		break;
-	
-	case 2:
-		return (new PresidentialPardonForm(target));
-		break;
+		case 1:		
+			form = new RobotomyRequestForm(target);
+			break;
 
-	default:
-		std::cerr << "Error: Unknown form: " << name << std::endl;
-		break;
+		case 2:
+			form = new PresidentialPardonForm(target);
+			break;
+
+		default:
+			std::cerr << "Error: Unknown form: " << name << std::endl;
+			return (0);
+			break;
 	}
-	return (0);
+	std::cout << "Intern creates " << names[j] << std::endl;
+	return (form);
 }

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:00 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/11 12:34:30 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:44:11 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main()
 
 	//---------------------------------------------------
 	std::cout << std::endl << "--- Tests: ---------------------" << std::endl;
-
+	
 	b.executeForm(*rrf);
 	b.signForm(*rrf);
 	b.executeForm(*rrf);

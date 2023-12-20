@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:41:30 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:30:58 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:35:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 	bool n = rand() % 2;
 	
 	if (n)
-		std::cout << getTarget() << " has been robotomized" << std::endl;
+		std::cout << getTarget() << " has been robotomized." << std::endl;
 	else
 		std::cout << "The robotomy failed." << std::endl;
 }
