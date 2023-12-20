@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:53 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 09:35:32 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:13:28 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ int	Form::_handleGrade(const int grade)
 
 	try
 	{
-		if (grade < HIGH_GRADE)
+		if (grade < HIGH_GRADE) {
 			throw (GradeTooHighException());
-		else if (grade > LOW_GRADE)
+		}
+		else if (grade > LOW_GRADE) {
 			throw (GradeTooLowException());
-		else
+		}
+		else {
 			ret = grade;
+		}
 	}
 	catch(GradeTooHighException &e)
 	{

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/18 10:46:24 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:12:34 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,15 @@ Bureaucrat::Bureaucrat(const std::string &name, const int grade) : _name(name)
 	std::cout << "Bureaucrat custom constructor called" << std::endl;
 	try
 	{
-		if (grade < HIGH_GRADE)
+		if (grade < HIGH_GRADE) {
 			throw (GradeTooHighException());
-		else if (grade > LOW_GRADE)
+		}
+		else if (grade > LOW_GRADE) {
 			throw (GradeTooLowException());
-		else
+		}
+		else {
 			_grade = grade;
+		}
 	}
 	catch(GradeTooHighException &e)
 	{
@@ -89,10 +92,12 @@ void	Bureaucrat::incrementGrade(void)
 {
 	try
 	{
-		if (_grade == HIGH_GRADE)
+		if (_grade == HIGH_GRADE) {
 			throw (GradeTooHighException());
-		else
+		}
+		else {
 			_grade--;
+		}
 	}
 	catch (GradeTooHighException &e)
 	{
@@ -104,10 +109,12 @@ void	Bureaucrat::decrementGrade(void)
 {
 	try
 	{
-		if (_grade == LOW_GRADE)
+		if (_grade == LOW_GRADE) {
 			throw (GradeTooLowException());
-		else
+		}
+		else {
 			_grade++;
+		}
 	}
 	catch (GradeTooLowException &e)
 	{

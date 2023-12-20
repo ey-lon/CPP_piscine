@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 12:19:55 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:10:59 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ Bureaucrat::Bureaucrat(const std::string &name, const int grade) : _name(name)
 	std::cout << "Bureaucrat custom constructor called" << std::endl;
 	try
 	{
-		if (grade < HIGH_GRADE)
+		if (grade < HIGH_GRADE) {
 			throw (GradeTooHighException());
-		else if (grade > LOW_GRADE)
+		}
+		else if (grade > LOW_GRADE) {
 			throw (GradeTooLowException());
-		else
+		}
+		else {
 			_grade = grade;
+		}
 	}
 	catch(GradeTooHighException &e)
 	{
@@ -90,10 +93,12 @@ void	Bureaucrat::incrementGrade(void)
 {
 	try
 	{
-		if (_grade == HIGH_GRADE)
+		if (_grade == HIGH_GRADE) {
 			throw (GradeTooHighException());
-		else
+		}
+		else {
 			_grade--;
+		}
 	}
 	catch (GradeTooHighException &e)
 	{
@@ -105,10 +110,12 @@ void	Bureaucrat::decrementGrade(void)
 {
 	try
 	{
-		if (_grade == LOW_GRADE)
+		if (_grade == LOW_GRADE) {
 			throw (GradeTooLowException());
-		else
+		}
+		else {
 			_grade++;
+		}
 	}
 	catch (GradeTooLowException &e)
 	{
@@ -123,7 +130,7 @@ void	Bureaucrat::signForm(AForm &form)
 		form.beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << "." << std::endl;
 	}
-	catch(Form::GradeTooLowException &e) {
+	catch(AForm::GradeTooLowException &e) {
 		std::cerr << _name << " couldn’t sign " << form.getName() << " because their grade is too low." << std::endl;
 	}
 	catch(std::exception) {
