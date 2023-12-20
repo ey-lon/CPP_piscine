@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:41:33 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 09:43:41 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:31:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(DEF_NAME, DEF_SIGN, DEF_EXEC)
 {
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return ;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)
 {
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return (*this);
 }
 
@@ -72,20 +74,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		return ;
 	}
 
-	//Trees ------------
-	std::string trees = "\
-               ,@@@@@@@,\n\
-       ,,,.   ,@@@@@@/@@,  .oo8888o.\n\
-    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n\
-   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n\
-   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n\
-   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n\
-   `&%\\ ` /%&'    |.|        \\ '|8'\n\
-       |o|        | |         | |\n\
-       |.|        | |         | |\n\
-/_\\ \\/ ._\\//_/__/  ,\\_//__\\/.  \\_//__/_";
-
 	//Execution --------
-	fileOut << trees;
+	fileOut << TREES;
 	fileOut.close();
 }

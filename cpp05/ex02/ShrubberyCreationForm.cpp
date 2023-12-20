@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:41:33 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 11:00:51 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:31:12 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(DEF_NAME, DEF_SIGN, DEF_EXEC)
 {
 	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return ;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &src)
 {
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return (*this);
 }
 

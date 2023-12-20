@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:40:52 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 10:18:51 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:30:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,17 @@ PresidentialPardonForm::~PresidentialPardonForm(void)
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : AForm(DEF_NAME, DEF_SIGN, DEF_EXEC)
 {
 	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return ;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
 {
-	if (this != &src)
-		AForm::operator=(src);;
+	if (this != &src) {
+		AForm::operator=(src);
+	}
 	return (*this);
 }
 

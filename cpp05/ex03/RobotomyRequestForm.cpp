@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:41:30 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/11 15:21:44 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:30:58 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,17 @@ RobotomyRequestForm::~RobotomyRequestForm(void)
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : AForm(DEF_NAME, DEF_SIGN, DEF_EXEC)
 {
 	std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
-	if (this != &src)
+	if (this != &src) {
 		AForm::operator=(src);
+	}
 	return ;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
 {
-	if (this != &src)
-		AForm::operator=(src);;
+	if (this != &src) {
+		AForm::operator=(src);
+	}
 	return (*this);
 }
 
