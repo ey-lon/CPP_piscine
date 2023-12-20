@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 10:50:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 09:37:20 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 12:19:55 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,18 +121,14 @@ void	Bureaucrat::signForm(AForm &form)
 	try
 	{
 		form.beSigned(*this);
+		std::cout << _name << " signed " << form.getName() << "." << std::endl;
 	}
-	catch (AForm::GradeTooLowException &e)
-	{
-		std::cerr << _name << " couldn’t sign " << form.getName() << " because their grade isn't high enough." << std::endl;
-		return;
+	catch(Form::GradeTooLowException &e) {
+		std::cerr << _name << " couldn’t sign " << form.getName() << " because their grade is too low." << std::endl;
 	}
-	catch (std::exception)
-	{
-		std::cerr << form.getName() << " is already signed." << std::endl;	
-		return ;
+	catch(std::exception) {
+		std::cerr << form.getName() << " is already signed." << std::endl;
 	}
-	std::cout << _name << " signed " << form.getName() << "." << std::endl;
 }
 
 void	Bureaucrat::executeForm(AForm const & form)
@@ -140,18 +136,14 @@ void	Bureaucrat::executeForm(AForm const & form)
 	try
 	{
 		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << "." << std::endl;
 	}
-	catch (AForm::GradeTooLowException)
-	{
-		std::cerr << _name << " couldn’t execute " << form.getName() << " because their grade isn't high enough." << std::endl;
-		return;
+	catch (AForm::GradeTooLowException) {
+		std::cerr << _name << " couldn’t execute " << form.getName() << " because their grade is too low." << std::endl;
 	}
-	catch (std::exception)
-	{
-		std::cerr << form.getName() << " isn't signed." << std::endl;	
-		return ;
+	catch (std::exception) {
+		std::cerr << form.getName() << " isn't signed." << std::endl;
 	}
-	std::cout << _name << " executed " << form.getName() << "." << std::endl;
 }
 
 //===================================================================
