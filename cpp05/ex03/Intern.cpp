@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:49:57 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 10:13:52 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:21:27 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target)
 	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	
 	int j = -1;
-	for (int i = 0; i < 3 && j == -1; i++)
+	for (int i = 0; i < 3 && j == -1; i++) {
 		j = name == names[i] ? i : j;
-
+	}
 	switch (j)
 	{
 	case 0:

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:53 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:13:43 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:18:16 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,20 +125,25 @@ void	AForm::setTarget(const std::string &target)
 
 void	AForm::beSigned(Bureaucrat &bureaucrat)
 {
-	if (_signed)
+	if (_signed) {
 		throw (std::exception());
-	if (bureaucrat.getGrade() > _minGradeToSign)
+	}
+	if (bureaucrat.getGrade() > _minGradeToSign) {
 		throw (GradeTooLowException());
-	else
+	}
+	else {
 		_signed = true;
+	}
 }
 
 void	AForm::execute(Bureaucrat const & executor) const
 {
-	if (!getSigned())
+	if (!getSigned()) {
 		throw (std::exception());
-	if (executor.getGrade() > getMinGradeToExecute())
+	}
+	if (executor.getGrade() > getMinGradeToExecute()) {
 		throw (GradeTooLowException());
+	}
 }
 
 //===================================================================

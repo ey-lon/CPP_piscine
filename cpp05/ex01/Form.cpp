@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:53 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:13:28 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:19:18 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ Form::Form(const Form &src) : _name(src._name), _signed(src._signed), _minGradeT
 Form &Form::operator=(const Form &src)
 {
 	if (this != &src)
+	{
 		_signed = src._signed;
+	}
 	return (*this);
 }
 
@@ -109,12 +111,15 @@ int	Form::getMinGradeToExecute(void) const
 
 void	Form::beSigned(Bureaucrat &bureaucrat)
 {
-	if (_signed)
+	if (_signed) {
 		throw (std::exception());
-	if (bureaucrat.getGrade() > _minGradeToSign)
+	}
+	if (bureaucrat.getGrade() > _minGradeToSign) {
 		throw (GradeTooLowException());
-	else
+	}
+	else {
 		_signed = true;
+	}
 }
 
 //===================================================================
