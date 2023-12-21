@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:53 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:18:28 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:55:33 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ AForm &AForm::operator=(const AForm &src)
 //-------------------------------------------------------------------
 //custom constructor
 
-int	AForm::_handleGrade(const int grade)
+int	AForm::_handleGrade(const int grade) const
 {
 	int	ret;
 

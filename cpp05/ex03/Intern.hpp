@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:42:27 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/12 09:28:04 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:56:20 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	Intern
 		Intern(const Intern &src);
 		Intern &operator=(const Intern &src);
 
-		AForm *makeForm(const std::string &name, const std::string &target);
+		AForm *makeForm(const std::string &name, const std::string &target) const;
 };
 
 #endif

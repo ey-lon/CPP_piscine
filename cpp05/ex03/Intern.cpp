@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:49:57 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/20 15:41:12 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:56:56 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ Intern &Intern::operator=(const Intern &src)
 
 //-------------------------------------------------------------------
 
-AForm *Intern::makeForm(const std::string &name, const std::string &target)
+AForm *Intern::makeForm(const std::string &name, const std::string &target) const
 {
-	std::string names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	std::string const names[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
 	AForm		*form;
 
 	int j = -1;

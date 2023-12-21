@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:58 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/11 16:47:23 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:55:24 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class AForm
 		const int				_minGradeToExecute;
 		std::string				_target;
 
-		int	_handleGrade(const int grade);
+		int	_handleGrade(const int grade) const;
 
 	public:
 		//---------------------------------------------------
