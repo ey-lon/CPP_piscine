@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 11:43:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/31 11:10:39 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:44:44 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,20 @@ Array<T>::Array(unsigned int n)
 
 template <typename T>
 T	&Array<T>::operator[](int index)
+{
+	//std::cerr << "array index "<< index <<" is before the beginning of the array" << std::endl;
+	if (index < 0)
+		throw (std::exception());
+
+	//std::cerr << "array index "<< index <<" is after the end of the array" << std::endl;
+	if ((unsigned int)index >= _size)
+		throw (std::exception());
+
+	return (_array[index]);
+}
+
+template <typename T>
+const T	&Array<T>::operator[](int index) const
 {
 	//std::cerr << "array index "<< index <<" is before the beginning of the array" << std::endl;
 	if (index < 0)
