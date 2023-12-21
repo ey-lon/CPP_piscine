@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:33:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/20 17:00:41 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:59:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ static bool	isDigit(const std::string &s)
 static int	strLenMod(const char *s, const std::string &del)
 {
 	int i = 0;
-	while (s[i] && del.find(s[i]) == std::string::npos)
+	while (s[i] && del.find(s[i]) == std::string::npos) {
 		i++;
+	}
 	return (i);
 }
 
@@ -35,14 +36,15 @@ static int	strLenMod(const char *s, const std::string &del)
 
 static void printVector(const std::vector<int> &vector)
 {
-	if (!vector.size())
+	if (!vector.size()) {
 		return;
-
+	}
 	for (std::vector<int>::const_iterator it = vector.begin(); it != vector.end(); ++it)
 	{
 		std::cout << *it;
-		if (it != --(vector.end()))
+		if (it != --(vector.end())) {
 			std::cout << " ";
+		}
 	}
 	std::cout << std::endl;
 }
@@ -89,22 +91,23 @@ void reversePolishNotation(const std::string &str)
 	while (1)
 	{
 		//spaces
-		while (str[i] == ' ')
+		while (str[i] == ' ') {
 			i++;
-		if (!str[i])
+		}
+		if (!str[i]) {
 			break;
-
+		}
 		//length
 		x = strLenMod(&str[i], " +-/*");
-		if (!x)
+		if (!x) {
 			x++;
-			
+		}
 		//token
 		token = str.substr(i, x);
 		if (token == "+" || token == "-" || token == "/" || token == "*") {
 			operation(vector, token[0]);
 		}
-		else if(isDigit(token)) {
+		else if (isDigit(token)) {
 			vector.push_back(std::atoi(token.c_str()));
 		}
 		else {
