@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:48:56 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/08 11:04:57 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:51:04 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,37 +58,42 @@ Span::~Span(void)
 
 void	Span::addNumber(int nbr)
 {
-	if (_vector.size() == _maxSize)
+	if (_vector.size() == _maxSize) {
 		throw (std::exception());
+	}
 	_vector.push_back(nbr);
 }
 
 void	Span::addNumber(int n, int nbr)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) {
 		addNumber(nbr);
+	}
 }
 
 void	Span::addRandNumber(int n)
 {
 	srand((unsigned int)time(NULL));
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) {
 		addNumber(rand());
+	}
 }
 
 void	Span::addRandNumber(int n, int max)
 {
 	srand((unsigned int)time(NULL));
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) {
 		addNumber(rand() % max);
+	}
 }
 
 //------------------------------------------------------------------
 
 unsigned int	Span::shortestSpan(void) const
 {
-	if (_vector.size() < 2)
+	if (_vector.size() < 2) {
 		throw (std::exception());
+	}
 
 	//sort the vector
 	std::vector<int> tmpVec(_vector);
@@ -96,19 +101,20 @@ unsigned int	Span::shortestSpan(void) const
 
 	//find the differences
 	std::vector<unsigned int> diffVec(_vector.size() - 1);
-	//std::adjacent_difference(tmpVec.begin(), tmpVec.end(), diffVec.begin());
-	for (unsigned int i = 0; i < diffVec.size(); i++)
+	//std::adjacent_difference(tmpVec.begin(), tmpVec.end(), diffVec.begin()); // <--- doesn't work with int limits.
+	for (unsigned int i = 0; i < diffVec.size(); i++) {
 		diffVec[i] = tmpVec[i + 1] - tmpVec[i];
-
+	}
+	
 	//return the smallest difference
 	return (*std::min_element(diffVec.begin(), diffVec.end()));
 }
 
 unsigned int	Span::longestSpan(void) const
 {
-	if (_vector.size() < 2)
+	if (_vector.size() < 2) {
 		throw (std::exception());
-
+	}
 	//return the difference between the greatest and the smallest number of the vector
 	return ((long)*std::max_element(_vector.begin(), _vector.end()) - (long)*std::min_element(_vector.begin(), _vector.end()));
 }
@@ -129,10 +135,12 @@ unsigned int	Span::maxSize(void) const
 
 const int	&Span::operator[](int index) const
 {
-	if (index < 0)
+	if (index < 0) {
 		throw (std::exception());
-	if ((unsigned int)index >= size())
+	}
+	if ((unsigned int)index >= size()) {
 		throw (std::exception());
+	}
 	return (_vector[index]);
 } 
 
