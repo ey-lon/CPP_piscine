@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:59:08 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/07 15:36:06 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:54:10 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ template <typename T>
 MutantStack<T> &MutantStack<T>::operator=(const MutantStack<T> &src)
 {
 	//std::cout << "MutantStack assignment operator called" << std::endl;
-	if (this == &src)
+	if (this == &src) {
 		return (*this);
+	}
 	std::stack<T>::operator=(src);
 	return (*this);
 }
