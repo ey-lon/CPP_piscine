@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 12:07:33 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/08 10:02:44 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:42:36 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &src)
 	return (*this);
 }
 
-void	DiamondTrap::whoAmI(void)
+void	DiamondTrap::whoAmI(void) const
 {
 	std::cout << "DiamondTrap name: " << this->_name << ", ClapTrap name: " << this->ClapTrap::_name << std::endl;
 }

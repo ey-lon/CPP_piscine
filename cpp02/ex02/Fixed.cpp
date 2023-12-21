@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:52:32 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/20 14:34:21 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:30:15 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ Fixed::Fixed(void) : _fixedPointNumber(0)
 
 Fixed::Fixed(const Fixed &src)
 {
-	*this = src;
 	std::cout << "Copy constructor called" << std::endl;
+	*this = src;
 	return ;
 }
 
 Fixed::Fixed(int n)
 {
-	_fixedPointNumber = n << _fractionBits;
 	std::cout << "Int constructor called" << std::endl;
+	_fixedPointNumber = n << _fractionBits;
 	return ;
 }
 
 Fixed::Fixed(float n)
 {
-	_fixedPointNumber = roundf(n * (1 << _fractionBits));
 	std::cout << "Float constructor called" << std::endl;
+	_fixedPointNumber = roundf(n * (1 << _fractionBits));
 	return ;
 }
 
@@ -103,9 +103,10 @@ const Fixed	&Fixed::max(const Fixed &a, const Fixed &b)
 
 Fixed &Fixed::operator=(const Fixed &src)
 {
-	if (this != &src)
-		this->_fixedPointNumber = src.getRawBits();
 	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &src) {
+		this->_fixedPointNumber = src.getRawBits();
+	}
 	return (*this);
 }
 

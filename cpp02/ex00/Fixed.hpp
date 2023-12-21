@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 10:38:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/19 11:54:12 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:18:11 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ class	Fixed
 		~Fixed(void);
 		Fixed &operator=(const Fixed &src);
 
-		int getRawBits( void ) const;
-		void setRawBits( int const raw );
+		int		getRawBits( void ) const;
+		void	setRawBits( int const raw );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:21:31 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 15:03:48 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:56:14 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ static void	ft_print_trunc(const std::string &str, int max)
 		std::cout << std::setw(max) << str;
 }
 
-void	PhoneBook::print_contacts(void)
+void	PhoneBook::print_contacts(void) const
 {
 	int	i;
 	int max;
@@ -152,7 +152,7 @@ void	PhoneBook::print_contacts(void)
 
 //------------------------------------------------------------------------------
 
-static int		ft_get_index(Contact *contacts)
+static int		ft_get_index(const Contact *contacts)
 {
 	int index;
 
@@ -174,7 +174,7 @@ static int		ft_get_index(Contact *contacts)
 //------------------------------------------------------------------------------
 //SEARCH
 
-void	PhoneBook::search(void)
+void	PhoneBook::search(void) const
 {
 	int	index;
 	

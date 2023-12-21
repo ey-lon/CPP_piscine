@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 09:36:05 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/26 15:34:17 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:06:24 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	Zombie
 		Zombie(std::string name);
 		~Zombie(void);
 		
-		void	announce(void);
+		void	announce(void) const;
 		void	setName(std::string name);
 };
 

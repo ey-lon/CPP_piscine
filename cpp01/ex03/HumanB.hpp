@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 13:58:17 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/16 16:07:46 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:07:06 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class	HumanB
 		HumanB(std::string name);
 		~HumanB(void);
 
-		void	attack(void);
+		void	attack(void) const;
 		void	setWeapon(Weapon &weapon);
 };
 

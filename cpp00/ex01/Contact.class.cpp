@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:22:32 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 14:58:40 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:51:25 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ Contact::~Contact(void)
 
 //------------------------------------------------------------------------------
 
-void	Contact::print_contact(void)
+void	Contact::print_contact(void) const
 {
 	std::cout << "FIRST NAME:" << std::endl;
 	std::cout << _first_name << std::endl;

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/08 11:15:04 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 14:57:32 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 09:50:55 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Contact
 		Contact();
 		~Contact();
 		
-		void		print_contact(void);
+		void		print_contact(void) const;
 
 		void		set_first_name(const std::string &str);
 		void		set_last_name(const std::string &str);
