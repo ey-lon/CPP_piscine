@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 12:09:12 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:16:05 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 15:07:52 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 class	Harl
 {
 	private:
-		void	_debug(void) const;
-		void	_info(void) const;
-		void	_warning(void) const;
-		void	_error(void) const;
+		void	_debug(void);
+		void	_info(void);
+		void	_warning(void);
+		void	_error(void);
 
 	public:
 		Harl(void);
 		~Harl(void);
 
-		void	complain(std::string level) const;
+		void	complain(std::string level);
 };
 
 #endif
