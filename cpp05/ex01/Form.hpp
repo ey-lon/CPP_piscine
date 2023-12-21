@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:14:58 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/11 16:49:47 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 10:54:22 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Form
 		const int			_minGradeToSign;
 		const int			_minGradeToExecute;
 
-		int	_handleGrade(const int grade);
+		int	_handleGrade(const int grade) const;
 
 	public:
 		class GradeTooLowException : public std::exception {
