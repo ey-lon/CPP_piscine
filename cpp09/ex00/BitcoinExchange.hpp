@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:24 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 12:35:23 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:56:20 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class BitcoinExchange
 
 		BitcoinExchange &operator=(const BitcoinExchange &src);
 
-		void execute(const std::string &input);
+		void execute(const std::string &input) const;
 };
 
 #endif

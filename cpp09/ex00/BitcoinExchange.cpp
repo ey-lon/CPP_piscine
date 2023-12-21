@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/24 09:49:16 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:56:24 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,17 +332,17 @@ BitcoinExchange::~BitcoinExchange(void)
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &src)
 {
-	if (this == &src)
-		return (*this);
-
-	this->_map = src._map;
+	if (this != &src)
+	{
+		this->_map = src._map;
+	}
 
 	return (*this);
 }
 
 //------------------------------------------------------------------------------
 
-void BitcoinExchange::execute(const std::string &input)
+void BitcoinExchange::execute(const std::string &input) const
 {	
 	/*
 	open input file -> throw exception if cannot open.
