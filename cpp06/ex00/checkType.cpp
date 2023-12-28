@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/25 10:12:22 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/28 10:26:30 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ static char	charAfter(const std::string &s, char c)
 //=====================================================
 //special
 
-bool	isSpecial(const std::string &s)
+bool	isPseudo(const std::string &s)
 {
-	//std::cout << "0 [special]" << std::endl;
-
 	if (s == "inf" || s == "+inf" || s == "-inf" || s == "nan" \
 		|| s == "inff" || s == "+inff" || s == "-inff" || s == "nanf")
 		return (true);
@@ -57,19 +55,14 @@ bool	isSpecial(const std::string &s)
 
 static bool	isChar(const std::string &s)
 {
-	//std::cout << "1 [char]" << std::endl;
 	if (s.length() == 1)
 	{
-		if (s[0] < 32 || s[0] > 126)
-			return (false);
 		if (std::isdigit(s[0]))
 			return (false);
 	}
 	else if (s.length() == 3)
 	{
 		if (s[0] != '\'' || s[2] != '\'')
-			return (false);
-		if (s[1] < 32 || s[1] > 126)
 			return (false);
 	}
 	else
@@ -83,7 +76,6 @@ static bool	isChar(const std::string &s)
 
 static bool	isInt(const std::string &s)
 {
-	//std::cout << "2 [int]" << std::endl;
 	size_t i = 0;
 	if (s[i] == '+' || s[i] == '-')
 		i++;
@@ -110,8 +102,6 @@ static bool	isInt(const std::string &s)
 
 static bool	isFloat(const std::string &s)
 {
-	//std::cout << "3 [float]" << std::endl;
-
 	//if (s == "+inff" || s == "-inff" || s == "nanf")
 	//	return (true);
 
@@ -144,8 +134,6 @@ static bool	isFloat(const std::string &s)
 
 static bool	isDouble(const std::string &s)
 {
-	//std::cout << "4 [double]" << std::endl;
-
 	//if (s == "+inf" || s == "-inf" || s == "nan")
 	//	return (true);
 
@@ -180,7 +168,7 @@ int	checkType(const std::string &s)
 	int type;
 
 	type = -1;
-	if (isSpecial(s))
+	if (isPseudo(s))
 		type = 0;
 	else if (isChar(s))
 		type = 1;

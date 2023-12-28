@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 11:09:20 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/20 15:38:39 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:09:17 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ int main(int ac, char **av)
 		 return (1);
 	}
 
-	std::string literal(av[1]);
-
-	ScalarConverter::convert(literal);
+	ScalarConverter::convert(av[1]);
 
 	return (0);
 }
