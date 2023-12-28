@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:54:59 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/26 17:36:31 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:31:27 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 template <typename T, typename L, typename R>
 void	iter(T* array, L length, R function)
 {
-	for (L i = 0; i < length; i++)
+	for (L i = 0; i < length; i++) {
 		function(array[i]);
+	}
 }
 
 #endif
