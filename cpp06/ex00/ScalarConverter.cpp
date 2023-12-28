@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 10:59:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/28 10:27:22 by abettini         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:15:08 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static void	dealChar(const std::string &s)
 {
 	char	n;
 
-	if (!s[1]) {
+	if (s.length() == 1) {
 		n = static_cast <char> (s[0]);
 	}
-	else {
+	else /* if (s.length() == 3) */ {
 		n = static_cast <char> (s[1]);
 	}
 	if (n < 32 || n > 126) {
@@ -189,9 +189,7 @@ int	checkType(const std::string &s);
 
 void	ScalarConverter::convert(const std::string &literal)
 {
-	int type = checkType(literal);
-
-	switch (type)
+	switch (checkType(literal))
 	{
 		case 0:
 			dealPseudo(literal);
