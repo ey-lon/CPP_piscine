@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/10 13:48:28 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:59:20 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ static char	charAfter(const std::string &s, char c)
 
 bool	isPseudo(const std::string &s)
 {
-	if (s == "inf" || s == "+inf" || s == "-inf" || s == "nan" \
+	if (s.length() > 5) {
+		return (false);
+	}
+	else if (s == "inf" || s == "+inf" || s == "-inf" || s == "nan" \
 		|| s == "inff" || s == "+inff" || s == "-inff" || s == "nanf") {
 		return (true);
 	}
-
-	return (false);
+	else {
+		return (false);
+	}
 }
 
 //=====================================================
