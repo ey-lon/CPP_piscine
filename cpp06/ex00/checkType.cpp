@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/10 13:44:07 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:48:28 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,10 +123,7 @@ static bool	isFloat(const std::string &s)
 		}
 	}
 	float	tmp = std::strtof(s.c_str(), NULL);
-	if (isinff(tmp)) {
-		return (false);
-	}
-	return (true);
+	return (!isinff(tmp));
 }
 
 //=====================================================
