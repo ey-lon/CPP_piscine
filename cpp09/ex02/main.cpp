@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:03 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/22 17:47:06 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:44:18 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,14 @@ static bool	isPositiveInt(char *s)
 	if (!s[i]) {
 		return (false);
 	}
-	if (strlen(s) - i > 10) {
+	/* if (strlen(s) - i > 10) {
 		return (false);
-	}
+	} */
 	for (; s[i]; i++) {
 		if (!std::isdigit(s[i])) {
 			return (false);
 		}
 	}
-	
 	long int tmp = std::strtol(s, NULL, 10);
 	return (tmp >= 0 && tmp <= INT_MAX);
 }

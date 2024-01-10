@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 11:56:24 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:44:09 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,20 @@
 static unsigned int	countStrChars(const std::string &str, const std::string &chars)
 {
 	unsigned int count = 0;
-	for (unsigned int i = 0; i < str.size(); i++)
-		if (chars.find(str[i]) != std::string::npos)
+	for (unsigned int i = 0; i < str.size(); i++) {
+		if (chars.find(str[i]) != std::string::npos) {
 			count++;
+		}
+	}
 	return (count);
 }
 
 static char	charAfter(const std::string &s, char c)
 {
 	size_t i = 0;
-	while (s[i] && s[i] != c)
+	while (s[i] && s[i] != c) {
 		i++;
+	}
 	return (s[i] ? s[i + 1] : s[i]);
 	
 }
@@ -45,15 +48,20 @@ static char	charAfter(const std::string &s, char c)
 static bool	isInt(const std::string &s)
 {
 	size_t i = 0;
-	if (s[i] == '+' || s[i] == '-')
+	if (s[i] == '+' || s[i] == '-') {
 		i++;
-	if (!s[i])
+	}
+	if (!s[i]) {
 		return (false);
-	if (s.length() - i > 10)
+	}
+	/* if (s.length() - i > 10) {
 		return (false);
-	for (; s[i]; i++)
-		if (!std::isdigit(s[i]))
+	} */
+	for (; s[i]; i++) {
+		if (!std::isdigit(s[i])) {
 			return (false);
+		}
+	}
 	long int tmp = std::strtol(s.c_str(), NULL, 10);
 	return (tmp >= INT_MIN && tmp <= INT_MAX);
 }
@@ -64,21 +72,25 @@ static bool	isInt(const std::string &s)
 static bool	isDouble(const std::string &s)
 {
 	size_t i = 0;
-	if (s[i] == '+' || s[i] == '-')
+	if (s[i] == '+' || s[i] == '-') {
 		i++;
-	if (!std::isdigit(s[i]))
+	}
+	if (!std::isdigit(s[i])) {
 		return (false);
-	if (countStrChars(s, ".") != 1)
+	}
+	if (countStrChars(s, ".") != 1) {
 		return (false);
-	if (!std::isdigit(charAfter(s, '.')))
+	}
+	if (!std::isdigit(charAfter(s, '.'))) {
 		return (false);
-	for (; s[i]; i++)
-		if (!std::isdigit(s[i]) && s[i] != '.')
+	}
+	for (; s[i]; i++) {
+		if (!std::isdigit(s[i]) && s[i] != '.') {
 			return (false);
+		}
+	}
 	double	tmp = std::strtod(s.c_str(), NULL);
-	if (std::isinf(tmp))
-		return (false);
-	return (true);
+	return (!std::isinf(tmp));
 }
 
 //-----------------------------------------------------
@@ -96,54 +108,65 @@ static bool isOnlyDigit(const std::string &s)
 
 static bool isLeapYear(int year)
 {
-	if (year % 400 == 0)
+	if (year % 400 == 0) {
 		return (true);
-	if (year % 100 == 0)
+	}
+	if (year % 100 == 0) {
 		return (false);
-	if (year % 4 == 0)
+	}
+	if (year % 4 == 0) {
 		return (true);
+	}
 	return (false);
 }
 
 static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 {
-	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-') {
 		return (false);
-
+	}
 	std::string yearStr = date.substr(0, 4);
 	std::string monthStr = date.substr(5, 2);
 	std::string dayStr = date.substr(8);
 
-	if (!isOnlyDigit(yearStr) || !isOnlyDigit(monthStr) || !isOnlyDigit(dayStr))
+	if (!isOnlyDigit(yearStr) || !isOnlyDigit(monthStr) || !isOnlyDigit(dayStr)) {
 		return (false);
-
+	}
 	int year = std::atoi(yearStr.c_str());
 	int month = std::atoi(monthStr.c_str());
 	int day = std::atoi(dayStr.c_str());
 
 	//--- year --------------------------
-	if (year < 0 || year > 9999)
+	if (year < 0 || year > 9999) {
 		return (false);
-	//--- month -------------------------
-	if (month < 1 || month > 12)
-		return (false);
-	//--- day ---------------------------
-	if (day < 1 || day > 31)
-		return (false);
-	if (day < 29)
-		return (true);
-	if (month == 2) //february
-	{
-		if (day > 29)
-			return (false);
-		else if (!isLeapYear(year))
-			return (false);
-		else
-			return (true);
 	}
-	if (day > 30 && (month == 4 || month == 6 || month == 9 || month == 11))
+	//--- month -------------------------
+	if (month < 1 || month > 12) {
 		return (false);
-
+	}
+	//--- day ---------------------------
+	if (day < 1 || day > 31) {
+		return (false);
+	}
+	if (day < 29) {
+		return (true);
+	}
+	//february
+	if (month == 2) {
+		if (day > 29) {
+			return (false);
+		}
+		else if (!isLeapYear(year)) {
+			return (false);
+		}
+		else {
+			return (true);
+		}
+	}
+	//months with 31 days
+	if (day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) {
+		return (false);
+	}
 	return (true);
 }
 
@@ -163,13 +186,13 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 			return (value * it->second);
 		}
 		if (date < it->first) {
-			if (it != map.begin())
-			{
+			if (it != map.begin()) {
 				it--;
 				return (value * it->second);
 			}
-			else
+			else {
 				return (0);
+			}
 		}
 	}
 	return (value * (--map.end())->second);
@@ -241,8 +264,7 @@ static bool handleInputFile(std::ifstream &inputFile, const std::map<std::string
 static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> &map)
 {
 	size_t i = line.find(',');
-	if (i == std::string::npos)
-	{
+	if (i == std::string::npos) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
@@ -277,8 +299,7 @@ static bool handleDataBaseFile(std::ifstream &dataBase, std::map<std::string, do
 	std::string line;
 	bool		name_field = false;
 
-	while (!dataBase.eof())
-	{
+	while (!dataBase.eof()) {
 		std::getline(dataBase, line);
 		if (line == "") {
 			;
@@ -308,8 +329,7 @@ BitcoinExchange::BitcoinExchange(const std::string &database)
 	//fill container based on database (csv file).
 
 	std::ifstream	dataBaseIF(database.c_str());
-	if (!dataBaseIF)
-	{
+	if (!dataBaseIF) {
 		std::cerr << "Error: could not open file: " << database << std::endl;
 		throw (std::exception());
 	}
@@ -332,11 +352,9 @@ BitcoinExchange::~BitcoinExchange(void)
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &src)
 {
-	if (this != &src)
-	{
+	if (this != &src) {
 		this->_map = src._map;
 	}
-
 	return (*this);
 }
 
@@ -352,8 +370,7 @@ void BitcoinExchange::execute(const std::string &input) const
 	*/
 
 	std::ifstream	fileIn(input.c_str());
-	if (!fileIn)
-	{
+	if (!fileIn) {
 		std::cerr << "Error: could not open file: " << input << std::endl;
 		throw (std::exception());
 	}

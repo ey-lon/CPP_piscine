@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/28 11:25:06 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:44:07 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,16 @@ static bool	isInt(const std::string &s)
 	if (!s[i]) {
 		return (false);
 	}
-	if (s.length() - i > 10) {
+	/* if (s.length() - i > 10) {
 		return (false);
-	}
+	} */
 	for (; s[i]; i++) {
 		if (!std::isdigit(s[i])) {
 			return (false);
 		}
 	}
 	long int tmp = std::strtol(s.c_str(), NULL, 10);
-	if (tmp < INT_MIN || tmp > INT_MAX) {
-		return (false);
-	}
-	return (true);
+	return (tmp >= INT_MIN && tmp <= INT_MAX);
 }
 
 //=====================================================
@@ -156,10 +153,7 @@ static bool	isDouble(const std::string &s)
 		}
 	}
 	double	tmp = std::strtod(s.c_str(), NULL);
-	if (std::isinf(tmp)) {
-		return (false);
-	}
-	return (true);
+	return (!std::isinf(tmp));
 }
 
 //=====================================================
