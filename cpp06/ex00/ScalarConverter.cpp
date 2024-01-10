@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 10:59:11 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/28 11:15:08 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:51:41 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void dealPseudo(const std::string &s)
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 	std::string tmp = s;
-	if (s == "inff" || s == "+inff" || s == "-inff" || s == "nanf") {
-		tmp[s.length() - 1] = '\0';
-	}
 	if (tmp[0] == '+') {
 		tmp = tmp.substr(1);
+	}
+	if (tmp == "inff" || tmp == "-inff" || tmp == "nanf") {
+		tmp[s.length() - 1] = '\0';
 	}
 	std::cout << "float: " << tmp << "f" << std::endl;
 	std::cout << "double: " << tmp << std::endl;
