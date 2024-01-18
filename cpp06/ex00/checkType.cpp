@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/10 13:59:20 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:52:03 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,6 @@ static bool	isInt(const std::string &s)
 	if (!s[i]) {
 		return (false);
 	}
-	/* if (s.length() - i > 10) {
-		return (false);
-	} */
 	for (; s[i]; i++) {
 		if (!std::isdigit(s[i])) {
 			return (false);
