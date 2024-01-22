@@ -10,8 +10,7 @@ int main(int, char**)
 		Array<int> numbers(MAX_VAL);
 		int* mirror = new int[MAX_VAL];
 		srand((unsigned int)time(NULL));
-		for (int i = 0; i < MAX_VAL; i++)
-		{
+		for (int i = 0; i < MAX_VAL; i++) {
 			const int value = rand();
 			numbers[i] = value;
 			mirror[i] = value;
@@ -22,33 +21,25 @@ int main(int, char**)
 			Array<int> test(tmp);
 		}
 
-		for (int i = 0; i < MAX_VAL; i++)
-		{
-			if (mirror[i] != numbers[i])
-			{
+		for (int i = 0; i < MAX_VAL; i++) {
+			if (mirror[i] != numbers[i]) {
 				std::cerr << "didn't save the same value!!" << std::endl;
-				return 1;
+				return (1);
 			}
 		}
-		try
-		{
+		try {
 			numbers[-2] = 0;
 		}
-		catch(const std::exception& e)
-		{
+		catch(const std::exception& e) {
 			std::cerr << e.what() << '\n';
 		}
-		try
-		{
+		try {
 			numbers[MAX_VAL] = 0;
 		}
-		catch(const std::exception& e)
-		{
+		catch(const std::exception& e) {
 			std::cerr << e.what() << '\n';
 		}
-
-		for (int i = 0; i < MAX_VAL; i++)
-		{
+		for (int i = 0; i < MAX_VAL; i++) {
 			numbers[i] = rand();
 		}
 
@@ -60,8 +51,7 @@ int main(int, char**)
 		Array<int> arr1(len);
 
 		srand((unsigned int)time(NULL));
-		for (int i = 0; i < len; i++)
-		{
+		for (int i = 0; i < len; i++) {
 			const int value = (rand() % 100);
 			arr1[i] = value;
 		}
@@ -69,9 +59,10 @@ int main(int, char**)
 		Array<int> arr2 = arr1;
 		Array<int> arr3(arr2);
 
-		for (int i = 0; i < len; i++)
+		for (int i = 0; i < len; i++) {
 			std::cout << arr3[i] << " ";
+		}
 		std::cout << std::endl;
 	}
-    return 0;
+    return (0);
 }
