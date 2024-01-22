@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 10:00:02 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/10 14:33:03 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:34:33 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ Cat::Cat(const Cat &src)
 
 Cat &Cat::operator=(const Cat &src)
 {
-	if (this != &src)
+	if (this != &src) {
 		*_brain = *src._brain;
+	}
 	return (*this);
 }
 

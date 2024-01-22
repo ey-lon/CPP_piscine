@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:47:43 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:49:52 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:36:04 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ Cure::Cure(const Cure &src)
 
 Cure &Cure::operator=(const Cure &src)
 {
-	if (this != &src)
-	{
+	if (this != &src) {
 		AMateria::operator=(src);
 	}
 	return (*this);

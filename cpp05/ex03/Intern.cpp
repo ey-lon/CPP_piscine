@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 11:49:57 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:56:56 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:37:29 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ AForm *Intern::makeForm(const std::string &name, const std::string &target) cons
 
 		default:
 			std::cerr << "Error: Unknown form: " << name << std::endl;
-			return (0);
+			return (NULL);
 			break;
 	}
 	std::cout << "Intern creates " << names[j] << std::endl;

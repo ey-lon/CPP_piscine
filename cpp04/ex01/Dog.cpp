@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 09:47:09 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/10 14:34:00 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:35:03 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ Dog::Dog(const Dog &src)
 
 Dog &Dog::operator=(const Dog &src)
 {
-	if (this != &src)
-	{
+	if (this != &src) {
 		*_brain = *src._brain;
 	}
 	return (*this);
