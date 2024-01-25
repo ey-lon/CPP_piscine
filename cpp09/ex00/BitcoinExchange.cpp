@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/25 15:36:46 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:56:23 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,9 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 	if (!map.size()) {
 		return (0);
 	}
+	if (date < map.begin()->first) {
+		return (0);
+	}
 	if (date > (--map.end())->first) {
 		return (value * (--map.end())->second);
 	}
@@ -152,13 +155,7 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 			return (value * it->second);
 		}
 		if (date < it->first) {
-			if (it != map.begin()) {
-				it--;
-				return (value * it->second);
-			}
-			else {
-				return (0);
-			}
+			return (value * (--it)->second);
 		}
 	}
 	return (value * (--map.end())->second);
