@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:08:40 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/17 11:20:32 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:03:48 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char **av)
 		
 		bce.execute(av[1]);
 	}
-	catch (std::exception) {}
+	catch (const std::exception &) {}
 
 	return (0);
 }

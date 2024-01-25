@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/18 11:52:46 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:14:04 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,6 @@
 #include <cstdlib>
 #include <climits>
 #include <cmath>
-
-//====================================================
-//utils
-
-static unsigned int	countStrChars(const std::string &str, const std::string &chars)
-{
-	unsigned int count = 0;
-	for (unsigned int i = 0; i < str.size(); i++) {
-		if (chars.find(str[i]) != std::string::npos) {
-			count++;
-		}
-	}
-	return (count);
-}
-
-static char	charAfter(const std::string &s, char c)
-{
-	size_t i = 0;
-	while (s[i] && s[i] != c) {
-		i++;
-	}
-	return (s[i] ? s[i + 1] : s[i]);
-	
-}
-
 
 //=====================================================
 //int
@@ -68,21 +43,23 @@ static bool	isInt(const std::string &s)
 
 static bool	isDouble(const std::string &s)
 {
-	size_t i = 0;
+	size_t	i = 0;
+
 	if (s[i] == '+' || s[i] == '-') {
 		i++;
 	}
 	if (!std::isdigit(s[i])) {
 		return (false);
 	}
-	if (countStrChars(s, ".") != 1) {
+	size_t	dotPos = s.find('.');
+	if (dotPos == std::string::npos) {
 		return (false);
 	}
-	if (!std::isdigit(charAfter(s, '.'))) {
+	if (!std::isdigit(s[dotPos + 1])) {
 		return (false);
 	}
 	for (; s[i]; i++) {
-		if (!std::isdigit(s[i]) && s[i] != '.') {
+		if (i != dotPos && !std::isdigit(s[i])) {
 			return (false);
 		}
 	}
@@ -93,7 +70,7 @@ static bool	isDouble(const std::string &s)
 //-----------------------------------------------------
 //date
 
-static bool isOnlyDigit(const std::string &s)
+static bool isDigitOnly(const std::string &s)
 {
 	for (size_t i = 0; s[i]; i++) {
 		if (!std::isdigit(s[i])) {
@@ -126,7 +103,7 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 	std::string monthStr = date.substr(5, 2);
 	std::string dayStr = date.substr(8);
 
-	if (!isOnlyDigit(yearStr) || !isOnlyDigit(monthStr) || !isOnlyDigit(dayStr)) {
+	if (!isDigitOnly(yearStr) || !isDigitOnly(monthStr) || !isDigitOnly(dayStr)) {
 		return (false);
 	}
 	int year = std::atoi(yearStr.c_str());
@@ -202,50 +179,51 @@ static bool handleInputLine(const std::string& line, const std::map<std::string,
 		return (false);
 	}
 
-	//--- date -----
+	//--- date ------
 	std::string date = line.substr(0, 10);
 	if (!isValidDateFormat(date)) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
 	
-	//--- value ----
-	std::string value = line.substr(13);
-	if (!isInt(value) && !isDouble(value)) {
+	//--- amount ----
+	std::string amount = line.substr(13);
+	if (!isInt(amount) && !isDouble(amount)) {
 		std::cerr << "Error: not a valid number." << std::endl;
 		return (false);
 	}
 	
-	double valueDouble = std::strtod(value.c_str(), NULL);
-	if (valueDouble < 0) {
+	double amountDouble = std::strtod(amount.c_str(), NULL);
+	if (amountDouble < 0) {
 		std::cerr << "Error: not a positive number." << std::endl;
 		return (false);
 	}
-	if (valueDouble > 1000) {
+	if (amountDouble > 1000) {
 		std::cerr << "Error: too large a number." << std::endl;
 		return (false);
 	}
 
 	//use the map to calculate the result
-	double result = getResult(map, date, valueDouble);
-	std::cout << date << " => " << value << " => " << result << std::endl;
+	double result = getResult(map, date, amountDouble);
+	std::cout << date << " => " << amountDouble << " => " << result << std::endl;
 	return (true);
 }
 
 static bool handleInputFile(std::ifstream &inputFile, const std::map<std::string, double> &map)
 {
-	std::string line;
-	bool		name_field = false;
+	const std::string	format = "date | value";
+	bool				firstLineCheck = false;
+	std::string			line;
 
 	while (!inputFile.eof())
 	{
 		std::getline(inputFile, line);
 		if (line == "") {
-			;
+			continue;
 		}
-		else if (!name_field) {
-			name_field = true;
-			if (line != "date | value") {
+		else if (!firstLineCheck) {
+			firstLineCheck = true;
+			if (line != format) {
 				handleInputLine(line, map);
 			}
 		}
@@ -293,17 +271,18 @@ static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> 
 
 static bool handleDataBaseFile(std::ifstream &dataBase, std::map<std::string, double> &map)
 {
-	std::string line;
-	bool		name_field = false;
+	const std::string	format = "date,exchange_rate";
+	bool				firstLineCheck = false;
+	std::string			line;
 
 	while (!dataBase.eof()) {
 		std::getline(dataBase, line);
 		if (line == "") {
-			;
+			continue;
 		}
-		else if (!name_field) {
-			name_field = true;
-			if (line != "date,exchange_rate") {
+		else if (!firstLineCheck) {
+			firstLineCheck = true;
+			if (line != format) {
 				handleDataBaseLine(line, map);
 			}
 		}
