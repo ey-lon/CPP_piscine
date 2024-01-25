@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/25 12:14:04 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:34:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,16 +110,8 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 	int month = std::atoi(monthStr.c_str());
 	int day = std::atoi(dayStr.c_str());
 
-	//--- year --------------------------
-	if (year < 0 || year > 9999) {
-		return (false);
-	}
-	//--- month -------------------------
-	if (month < 1 || month > 12) {
-		return (false);
-	}
-	//--- day ---------------------------
-	if (day < 1 || day > 31) {
+	//limits
+	if (month < 1 || month > 12 || day < 1 || day > 31) {
 		return (false);
 	}
 	if (day < 29) {
