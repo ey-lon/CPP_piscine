@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/25 15:56:23 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:11:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 	if (date > (--map.end())->first) {
 		return (value * (--map.end())->second);
 	}
-	for(std::map<std::string, double>::const_iterator it = map.begin(); it != map.end(); it++)
+	for (std::map<std::string, double>::const_iterator it = map.begin(); it != map.end(); it++)
 	{
 		if (date == it->first) {
 			return (value * it->second);
