@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 10:59:11 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/10 13:51:41 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:34:27 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &src)
 	return (*this);
 }
 
-//-------------------------------------------------------------------
+//=====================================================
+//pseudo
 
 static void dealPseudo(const std::string &s)
 {
@@ -60,6 +61,9 @@ static void dealPseudo(const std::string &s)
 	std::cout << "float: " << tmp << "f" << std::endl;
 	std::cout << "double: " << tmp << std::endl;
 }
+
+//=====================================================
+//char
 
 static void	dealChar(const std::string &s)
 {
@@ -82,6 +86,9 @@ static void	dealChar(const std::string &s)
 	std::cout << "double: " << static_cast <double> (n) << ".0" << std::endl;
 }
 
+//=====================================================
+//int
+
 static void	dealInt(const std::string &s)
 {
 	int	n;
@@ -102,31 +109,34 @@ static void	dealInt(const std::string &s)
 	std::cout << "double: " << std::setprecision((int)s.length()) << static_cast <double> (n) << ".0" << std::endl;
 }
 
+//=====================================================
+//float
+
 static void	dealFloat(const std::string &s)
 {
-	float	n;
 
-	n = static_cast <float> (std::strtof(s.c_str(), NULL));
+	float	n = static_cast <float> (std::strtof(s.c_str(), NULL));
+	float	nFloor = floorf(n);
 
 	//--- char ---------------
-	if (n < CHAR_MIN || n > CHAR_MAX) {
+	if (nFloor < CHAR_MIN || nFloor > CHAR_MAX) {
 		std::cout << "char: impossible" << std::endl;
 	}
-	else if (n < 32 || n > 126) {
+	else if (nFloor < 32 || nFloor > 126) {
 		std::cout << "char: Non displayable" << std::endl;
 	}
 	else {
 		std::cout << "char: '" << static_cast <char> (n) << "'" << std::endl;
 	}
 	//--- int ----------------	
-	if (static_cast <long>(n) < INT_MIN || static_cast <long>(n) > INT_MAX) {
+	if (static_cast <long>(nFloor) < INT_MIN || static_cast <long>(nFloor) > INT_MAX) {
 		std::cout << "int: impossible" << std::endl;
 	}
 	else {
 		std::cout << "int: " << static_cast <int> (n) << std::endl;
 	}
 	//--- float --------------
-	if (n == floorf(n)) {
+	if (n == nFloor) {
 		std::cout << "float: " << std::setprecision((int)s.length() - 2) << (n) << ".0f" << std::endl;
 	}
 	else {
@@ -142,14 +152,16 @@ static void	dealFloat(const std::string &s)
 	}
 }
 
+//=====================================================
+//double
+
 static void	dealDouble(const std::string &s)
 {
-	double	n;
-
-	n = static_cast <double> (std::strtod(s.c_str(), NULL));
+	double	n = static_cast <double> (std::strtod(s.c_str(), NULL));
+	double	nFloor = floor(n);
 
 	//--- char ---------------
-	if (n < CHAR_MIN || n > CHAR_MAX) {
+	if (nFloor < CHAR_MIN || nFloor > CHAR_MAX) {
 		std::cout << "char: impossible" << std::endl;
 	}
 	else if (n < 32 || n > 126) {
@@ -159,7 +171,7 @@ static void	dealDouble(const std::string &s)
 		std::cout << "char: '" << static_cast <char> (n) << "'" << std::endl;
 	}
 	//--- int ----------------
-	if (n < INT_MIN || n > INT_MAX) {
+	if (nFloor < INT_MIN || nFloor > INT_MAX) {
 		std::cout << "int: impossible" << std::endl;
 	}
 	else {
@@ -177,13 +189,15 @@ static void	dealDouble(const std::string &s)
 		std::cout << "float: " << std::setprecision((int)s.length() - 1) << nf << "f" << std::endl;
 	}
 	//--- double -------------
-	if (n == floor(n)) {
+	if (n == nFloor) {
 		std::cout << "double: " << std::setprecision((int)s.length() - 1) << (n) << ".0" << std::endl;
 	}
 	else {
 		std::cout << "double: " << std::setprecision((int)s.length() - 1) << (n) << std::endl;
 	}
 }
+
+//=====================================================
 
 int	checkType(const std::string &s);
 

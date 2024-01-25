@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:00:46 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/18 11:52:03 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:33:33 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,12 @@
 #include <cstdlib>
 
 //=====================================================
-//utils
-
-static int	countChar(const std::string &s, char c)
-{
-	int	count = 0;
-
-	for (size_t i = 0; s[i]; i++) {
-		if (s[i] == c) {
-			count++;
-		}
-	}
-	
-	return (count);
-}
-
-static char	charAfter(const std::string &s, char c)
-{
-	size_t i = 0;
-
-	while (s[i] != c) {
-		i++;
-	}
-	return (s[i + 1]);
-}
-
-//=====================================================
-//special
+//pseudo
 
 bool	isPseudo(const std::string &s)
 {
-	if (s.length() > 5) {
-		return (false);
-	}
-	else if (s == "inf" || s == "+inf" || s == "-inf" || s == "nan" \
-		|| s == "inff" || s == "+inff" || s == "-inff" || s == "nanf") {
-		return (true);
-	}
-	else {
-		return (false);
-	}
+	return (s == "inf" || s == "+inf" || s == "-inf" || s == "nan" \
+		|| s == "inff" || s == "+inff" || s == "-inff" || s == "nanf");
 }
 
 //=====================================================
@@ -112,14 +78,16 @@ static bool	isFloat(const std::string &s)
 	if (!std::isdigit(s[i])) {
 		return (false);
 	}
-	if (countChar(s, '.') != 1 || countChar(s, 'f') != 1) {
+	size_t	dotPos = s.find('.');
+	if (dotPos == std::string::npos || !std::isdigit(s[dotPos + 1])) {
 		return (false);
 	}
-	if (!std::isdigit(charAfter(s, '.')) || charAfter(s, 'f')) {
+	size_t	fPos = s.find('f');
+	if (fPos == std::string::npos || s[fPos + 1] != '\0') {
 		return (false);
 	}
-	for (; s[i]; i++) {
-		if (!std::isdigit(s[i]) && s[i] != '.' && s[i] != 'f') {
+	for (; i < fPos; i++) {
+		if (i != dotPos && !std::isdigit(s[i])) {
 			return (false);
 		}
 	}
@@ -132,21 +100,23 @@ static bool	isFloat(const std::string &s)
 
 static bool	isDouble(const std::string &s)
 {
-	size_t i = 0;
+	size_t	i = 0;
+
 	if (s[i] == '+' || s[i] == '-') {
 		i++;
 	}
 	if (!std::isdigit(s[i])) {
 		return (false);
 	}
-	if (countChar(s, '.') != 1) {
+	size_t	dotPos = s.find('.');
+	if (dotPos == std::string::npos) {
 		return (false);
 	}
-	if (!std::isdigit(charAfter(s, '.'))) {
+	if (!std::isdigit(s[dotPos + 1])) {
 		return (false);
 	}
 	for (; s[i]; i++) {
-		if (!std::isdigit(s[i]) && s[i] != '.') {
+		if (i != dotPos && !std::isdigit(s[i])) {
 			return (false);
 		}
 	}
