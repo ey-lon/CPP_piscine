@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/25 15:34:37 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:36:46 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 			return (true);
 		}
 	}
-	//months with 31 days
+	//day 31
 	if (day > 30 && (month == 4 || month == 6 || month == 9 || month == 11)) {
 		return (false);
 	}
