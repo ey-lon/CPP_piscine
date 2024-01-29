@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:45:37 by abettini          #+#    #+#             */
-/*   Updated: 2023/11/22 10:57:00 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/29 12:41:49 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,34 @@
 
 #include <iostream>
 #include <cstdlib>
+
+template <typename T>
+static T	insertionSort(T& container)
+{
+	if (container.size() < 2) {
+		return (container);
+	}
+
+	typename T::value_type	n;
+	typename T::iterator	itN;
+	typename T::iterator	itNPrev;
+
+	for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
+		n = *it;
+        itN = it;
+        while (itN != container.begin()) {
+			itNPrev = itN;
+			--itNPrev;
+			if (*itNPrev <= n) {
+				break ;
+			}
+			*itN = *itNPrev;
+			--itN;
+        }
+        *itN = n;
+    }
+	return (container);
+}
 
 template <typename T>
 T	merge(T &contA, T &contB)
@@ -47,14 +75,15 @@ T	merge(T &contA, T &contB)
 template <typename T>
 T	mergeSort(T &container)
 {
-	if (container.size() == 1) {
+	size_t n = 10;
+	if (container.size() <= n)
+	{
+		insertionSort(container);
 		return (container);
 	}
 
 	typename T::iterator	mid = container.begin();
-	for (size_t i = 0; i < (container.size() / 2); i++) {
-		mid++;
-	}
+	std::advance(mid, container.size() / 2);
 
 	T	contA(container.begin(), mid);
 	T	contB(mid, container.end());
@@ -63,7 +92,7 @@ T	mergeSort(T &container)
 	contB = mergeSort(contB);
 
 	return (merge(contA, contB));
-}
+} 
 
 template <typename T>
 void	fillContainer(T &container, char **av)
