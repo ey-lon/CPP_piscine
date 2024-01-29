@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:45:23 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/29 12:18:45 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:33:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	PmergeMe(char **av)
 	std::cout << std::endl;
 
 	start = clock();
-	list = mergeSort(list);
+	list = mergeInsertionSort(list);
 	end = clock();
 	double time1 = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 
 	start = clock();
-	deque = mergeSort(deque);
+	deque = mergeInsertionSort(deque);
 	end = clock();
 	double time2 = static_cast<double>(end - start) / CLOCKS_PER_SEC * 1000000;
 

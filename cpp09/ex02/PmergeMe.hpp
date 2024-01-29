@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 09:45:37 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/29 12:41:49 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:34:28 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,30 @@
 
 #include <iostream>
 #include <cstdlib>
+
+//-----------------------------------------------------------
+
+template <typename T>
+void	fillContainer(T &container, char **av)
+{
+	for (int i = 0; av[i]; i++) {
+		container.push_back(std::atoi(av[i]));
+	}
+	return ;
+}
+
+template <typename T>
+void printContainer(const T &container)
+{
+	for (typename T::const_iterator it = container.begin(); it != container.end(); ++it) {
+		std::cout << *it;
+		if (it != --container.end()) {
+			std::cout << " ";
+		}
+	}
+}
+
+//-----------------------------------------------------------
 
 template <typename T>
 static T	insertionSort(T& container)
@@ -29,7 +53,7 @@ static T	insertionSort(T& container)
 	typename T::iterator	itN;
 	typename T::iterator	itNPrev;
 
-	for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
+	for (typename T::iterator it = ++container.begin(); it != container.end(); ++it) {
 		n = *it;
         itN = it;
         while (itN != container.begin()) {
@@ -47,7 +71,7 @@ static T	insertionSort(T& container)
 }
 
 template <typename T>
-T	merge(T &contA, T &contB)
+static T	mergeSort(T &contA, T &contB)
 {
 	T contC;
 
@@ -73,11 +97,10 @@ T	merge(T &contA, T &contB)
 }
 
 template <typename T>
-T	mergeSort(T &container)
+T	mergeInsertionSort(T &container)
 {
 	size_t n = 10;
-	if (container.size() <= n)
-	{
+	if (container.size() <= n) {
 		insertionSort(container);
 		return (container);
 	}
@@ -88,31 +111,11 @@ T	mergeSort(T &container)
 	T	contA(container.begin(), mid);
 	T	contB(mid, container.end());
 
-	contA = mergeSort(contA);
-	contB = mergeSort(contB);
+	contA = mergeInsertionSort(contA);
+	contB = mergeInsertionSort(contB);
 
-	return (merge(contA, contB));
+	return (mergeSort(contA, contB));
 } 
-
-template <typename T>
-void	fillContainer(T &container, char **av)
-{
-	for (int i = 0; av[i]; i++) {
-		container.push_back(std::atoi(av[i]));
-	}
-	return ;
-}
-
-template <typename T>
-void printContainer(const T &container)
-{
-	for (typename T::const_iterator it = container.begin(); it != container.end(); ++it) {
-		std::cout << *it;
-		if (it != --container.end()) {
-			std::cout << " ";
-		}
-	}
-}
 
 void	PmergeMe(char **av);
 

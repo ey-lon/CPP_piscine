@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:03 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/29 12:42:21 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/29 15:36:51 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 static bool	isPositiveInt(char *s)
 {
 	size_t i = 0;
+	while (std::isspace(s[i])) {
+		i++;
+	}
  	if (s[i] == '+') {
 		i++;
 	}
@@ -33,7 +36,7 @@ static bool	isPositiveInt(char *s)
 	return (tmp >= 0 && tmp <= INT_MAX);
 }
 
-static bool checkArgs(char **args)
+static bool isValidInput(char **args)
 {
 	for (int i = 0; args[i]; i++) {
 		if (!isPositiveInt(args[i])) {
@@ -46,11 +49,11 @@ static bool checkArgs(char **args)
 int main(int ac, char **av)
 {
 	if (ac < 3) {
-		std::cout << "Error: invalid arguments." << std::endl;
+		std::cout << "Error: too few arguments." << std::endl;
 		return (1);
 	}
 	av++;
-	if (!checkArgs(av)) {
+	if (!isValidInput(av)) {
 		std::cout << "Error: invalid input." << std::endl;
 		return (1);
 	}
