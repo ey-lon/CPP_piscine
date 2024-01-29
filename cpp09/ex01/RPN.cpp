@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:33:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 11:59:51 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:48:02 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,21 @@
 //=====================================================
 //utils
 
-static bool	isDigit(const std::string &s)
+static bool isOperator(const std::string &s)
 {
+	return (s == "+" || s == "-" || s == "/" || s == "*");
+}
+
+static bool	isValidInput(const std::string &s)
+{
+	//integers 0-9
 	return (s.length() == 1 && std::isdigit(s[0]));
 }
 
-static int	strLenMod(const char *s, const std::string &del)
+static int	tokenLength(const char *s, const std::string &del)
 {
 	int i = 0;
-	while (s[i] && del.find(s[i]) == std::string::npos) {
+	while (s[i] && !std::isspace(s[i]) && del.find(s[i]) == std::string::npos) {
 		i++;
 	}
 	return (i);
@@ -36,7 +42,7 @@ static int	strLenMod(const char *s, const std::string &del)
 
 static void printVector(const std::vector<int> &vector)
 {
-	if (!vector.size()) {
+	if (vector.empty()) {
 		return;
 	}
 	for (std::vector<int>::const_iterator it = vector.begin(); it != vector.end(); ++it)
@@ -61,6 +67,7 @@ static void	operation(std::vector<int> &vector, char op)
 	vector.pop_back();
 	int a = vector.back();
 	vector.pop_back();
+
 	switch (op)
 	{
 		case '+':
@@ -91,23 +98,23 @@ void reversePolishNotation(const std::string &str)
 	while (1)
 	{
 		//spaces
-		while (str[i] == ' ') {
+		while (std::isspace(str[i])) {
 			i++;
 		}
 		if (!str[i]) {
 			break;
 		}
 		//length
-		x = strLenMod(&str[i], " +-/*");
+		x = tokenLength(&str[i], "+-*/");
 		if (!x) {
 			x++;
 		}
 		//token
 		token = str.substr(i, x);
-		if (token == "+" || token == "-" || token == "/" || token == "*") {
+		if (isOperator(token)) {
 			operation(vector, token[0]);
 		}
-		else if (isDigit(token)) {
+		else if (isValidInput(token)) {
 			vector.push_back(std::atoi(token.c_str()));
 		}
 		else {
