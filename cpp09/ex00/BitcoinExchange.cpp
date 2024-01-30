@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/29 10:23:03 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/30 16:03:00 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,25 +140,14 @@ static bool isValidDateFormat(const std::string& date) //YYYY-MM-DD
 
 static double getResult(const std::map<std::string, double> &map, const std::string &date, const double &value)
 {
-	if (!map.size()) {
+	if (map.empty() || date < map.begin()->first) {
 		return (0);
 	}
-	if (date < map.begin()->first) {
-		return (0);
+	std::map<std::string, double>::const_iterator it = map.lower_bound(date);
+	if (it == map.end() || it->first > date) {
+		it--;
 	}
-	if (date > (--map.end())->first) {
-		return (value * (--map.end())->second);
-	}
-	for (std::map<std::string, double>::const_iterator it = map.begin(); it != map.end(); it++)
-	{
-		if (date == it->first) {
-			return (value * it->second);
-		}
-		if (date < it->first) {
-			return (value * (--it)->second);
-		}
-	}
-	return (value * (--map.end())->second);
+	return (it->second * value);
 }
 
 static bool handleInputLine(const std::string& line, const std::map<std::string, double> &map)
