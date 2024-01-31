@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/31 10:01:47 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:41:30 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,20 +151,22 @@ static double getResult(const std::map<std::string, double> &map, const std::str
 
 static bool handleInputLine(const std::string& line, const std::map<std::string, double> &map)
 {
-	if (line.size() < 14 || !std::isspace(line[10]) || !std::isspace(line[12]) || line[11] != '|') {
+	const std::string	del = " | ";
+	const size_t	 	delPos = line.find(del);
+	if (delPos == std::string::npos) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
 
 	//--- date ------
-	std::string date = line.substr(0, 10);
+	std::string date = line.substr(0, delPos);
 	if (!isValidDateFormat(date)) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
 	
 	//--- amount ----
-	std::string amount = line.substr(13);
+	std::string amount = line.substr(delPos + del.length());
 	if (!isInt(amount) && !isDouble(amount)) {
 		std::cerr << "Error: not a valid number." << std::endl;
 		return (false);
@@ -215,21 +217,22 @@ static bool handleInputFile(std::ifstream &inputFile, const std::map<std::string
 
 static bool	handleDataBaseLine(std::string &line, std::map<std::string, double> &map)
 {
-	size_t i = line.find(',');
-	if (i == std::string::npos) {
+	const std::string	del = ",";
+	const size_t	 	delPos = line.find(del);
+	if (delPos == std::string::npos) {
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);
 	}
 
 	//--- date -----
-	std::string date = line.substr(0, i);
+	std::string date = line.substr(0, delPos);
 	if (!isValidDateFormat(date)) {	
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return (false);	
 	}
 	
 	//--- value ----
-	std::string value = line.substr(i + 1);
+	std::string value = line.substr(delPos + del.length());
 	if (!isInt(value) && !isDouble(value)) {
 		std::cerr << "Error: not a valid number." << std::endl;
 		return (false);
