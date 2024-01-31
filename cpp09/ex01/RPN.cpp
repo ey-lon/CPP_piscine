@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 14:33:35 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/31 12:29:23 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/31 12:35:30 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ static void	operation(std::vector<int> &vector, const char op)
 //---------------------------------------------------------
 
 /*
-	operations on integers less than 10
+	operations (+, -, *, /) on integers less than 10
 */
+
 void reversePolishNotation(const std::string &str)
 {
 	std::vector<int>	vector;
