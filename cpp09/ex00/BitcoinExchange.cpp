@@ -6,12 +6,11 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:09:54 by abettini          #+#    #+#             */
-/*   Updated: 2024/01/30 16:03:00 by abettini         ###   ########.fr       */
+/*   Updated: 2024/01/31 10:01:47 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <climits>
