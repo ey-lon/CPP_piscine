@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 11:26:14 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/25 09:41:06 by abettini         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:25:25 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 class ClapTrap
 {
 	protected:
-		std::string _name;
-		int			_hitPoints;
-		int			_energyPoints;
-		int			_attackDamage;
+		std::string		_name;
+		unsigned int	_hitPoints;
+		unsigned int	_energyPoints;
+		unsigned int	_attackDamage;
 
 	public:
 		ClapTrap(void);
@@ -46,7 +46,5 @@ class ClapTrap
 		int			getEnergyPoints(void) const;
 		int			getAttackDamage(void) const;
 };
-
-
 
 #endif

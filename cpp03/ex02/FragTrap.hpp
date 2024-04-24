@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:19:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/25 10:31:23 by abettini         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:26:39 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 class	FragTrap : public ClapTrap
 {
+	protected:
+		static const int	_defaultHitPoints = 100;
+		static const int	_defaultEnergyPoints = 100;
+		static const int	_defaultAttackDamage = 30;
+		
 	public:
 		FragTrap(void);
 		FragTrap(std::string name);

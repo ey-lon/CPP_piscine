@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:19:55 by abettini          #+#    #+#             */
-/*   Updated: 2023/09/25 14:21:23 by abettini         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:28:30 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 class	ScavTrap : virtual public ClapTrap
 {
+	protected:
+		static const int	_defaultHitPoints = 100;
+		static const int	_defaultEnergyPoints = 50;
+		static const int	_defaultAttackDamage = 20;
+
 	public:
 		ScavTrap(void);
 		ScavTrap(std::string name);

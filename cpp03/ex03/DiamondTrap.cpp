@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 12:07:33 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:42:36 by abettini         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:33:50 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 DiamondTrap::DiamondTrap(void) : ClapTrap(), _name("")
 {
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
+	_hitPoints = FragTrap::_defaultHitPoints;
+	_energyPoints = ScavTrap::_defaultEnergyPoints;
+	_attackDamage = FragTrap::_defaultAttackDamage;
 	return ;
 };
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), _name(name)
 {
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_hitPoints;
-	_attackDamage = FragTrap::_attackDamage;
 	std::cout << "DiamondTrap String constructor called" << std::endl;
+	_hitPoints = FragTrap::_defaultHitPoints;
+	_energyPoints = ScavTrap::_defaultEnergyPoints;
+	_attackDamage = FragTrap::_defaultAttackDamage;
 	return ;
 };
 
@@ -45,8 +45,7 @@ DiamondTrap::~DiamondTrap(void)
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &src)
 {
-	if (this != &src)
-	{
+	if (this != &src) {
 		this->_name = src._name;
 		this->setName(src.getName());
 		this->setHitPoints(src.getEnergyPoints());

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 16:19:50 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:44:33 by abettini         ###   ########.fr       */
+/*   Updated: 2024/04/24 10:34:37 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,31 @@
 ScavTrap::ScavTrap(void) : ClapTrap()
 {
 	std::cout << "ScavTrap Default constructor called" << std::endl;
-
-	//this->setName("");
-	this->setHitPoints(100);
-	this->setEnergyPoints(50);
-	this->setAttackDamage(20);
-	
+	this->setHitPoints(this->_defaultHitPoints);
+	this->setEnergyPoints(this->_defaultEnergyPoints);
+	this->setAttackDamage(this->_defaultAttackDamage);
 	return ;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
 	std::cout << "ScavTrap String constructor called" << std::endl;
-
-	//this->setName(name);
-	this->setHitPoints(100);
-	this->setEnergyPoints(50);
-	this->setAttackDamage(20);
-
+	this->setHitPoints(this->_defaultHitPoints);
+	this->setEnergyPoints(this->_defaultEnergyPoints);
+	this->setAttackDamage(this->_defaultAttackDamage);
 	return ;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &src) : ClapTrap(src)
+ScavTrap::ScavTrap(const ScavTrap &src)
 {
 	std::cout << "ScavTrap Copy constructor called" << std::endl;
+	*this = src;
 	return ;
 }
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &src)
 {
-	if (this != &src)
-	{
+	if (this != &src) {
 		this->setName(src.getName());
 		this->setHitPoints(src.getEnergyPoints());
 		this->setEnergyPoints(src.getEnergyPoints());
@@ -64,10 +58,10 @@ ScavTrap::~ScavTrap(void)
 
 void ScavTrap::guardGate(void)
 {
-	if (this->getHitPoints() <= 0) {
+	if (this->getHitPoints() == 0) {
 		std::cout << "ScavTrap " << this->getName() << " is dead!" << std::endl;
 	}
-	else if(this->getEnergyPoints() <= 0) {
+	else if(this->getEnergyPoints() == 0) {
 		std::cout << "ScavTrap " << this->getName() << " doesn't have enough energy points to go in Gate keeper mode!" << std::endl;
 	}
 	else {
@@ -77,10 +71,10 @@ void ScavTrap::guardGate(void)
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (this->getHitPoints() <= 0) {
+	if (this->getHitPoints() == 0) {
 		std::cout << "ScavTrap " << this->getName() << " is dead!" << std::endl;
 	}
-	else if (this->getEnergyPoints() <= 0) {
+	else if (this->getEnergyPoints() == 0) {
 		std::cout << "ScavTrap " << this->getName() << " doesn't have enough energy points to attack " << target << "!" << std::endl;
 	}
 	else {
