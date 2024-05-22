@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 11:38:45 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 11:45:08 by abettini         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:42:30 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class Array
 
 		Array(unsigned int n);
 		
-		T		&operator[](int index); 
-		const T	&operator[](int index) const;
+		T		&operator[](unsigned int index); 
+		const T	&operator[](unsigned int index) const;
 
 		const unsigned int &size(void) const;
 };

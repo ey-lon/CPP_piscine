@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:22:15 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:50:07 by abettini         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:13:42 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define AMATERIA_HPP
 
 # include <iostream>
+
 # include "ICharacter.hpp"
 
 class	AMateria

@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:54:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/12/21 10:51:28 by abettini         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:56:18 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &src)
 {
 	if (this != &src)
 	{
-		bool check;
 		for (int i = 0; i < MAX_MATERIAS; i++) {
 				delete (_materias[i]);
 		}

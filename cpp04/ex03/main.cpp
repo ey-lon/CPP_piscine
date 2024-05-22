@@ -6,7 +6,7 @@
 /*   By: abettini <abettini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 16:21:35 by abettini          #+#    #+#             */
-/*   Updated: 2023/10/06 11:19:28 by abettini         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:16:40 by abettini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(void)
 
 	me->unequip(1);
 	me->use(1, *bob);
+
 	delete (tmp);
 
 	delete (bob);
